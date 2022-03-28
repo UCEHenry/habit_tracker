@@ -1,6 +1,5 @@
 const request = require('supertest');
 const app = require('../../server.js');
-const MongoClient = require("mongodb/lib/mongo_client");
 const resetTestDB = require('./config.js')
 
 
@@ -9,10 +8,6 @@ describe('user endpoints', () => {
 
     beforeEach(async () => {
         await resetTestDB.resetTestDB()
-        // connection = await MongoClient.connect(process.env.DB_CONNECTION)
-        // db = await connection.db(process.env.DB_NAME);
-        // // load('./test_seeds.js');
-        // await db.collection('users').deleteMany({});
     });
 
     beforeAll(async () => {

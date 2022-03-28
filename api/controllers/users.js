@@ -5,10 +5,10 @@ async function send(req, res) {
     try{
         const username = req.body.username
         const password = req.body.password
-        const user = await User.createUser(req.body)
+        const user = await User.createUser(username, password)
         res.status(201).json(user)
     } catch (err) {
-        console.log(req.body)
+        // console.log(err)
         res.status(422).json({err})
     }
 }

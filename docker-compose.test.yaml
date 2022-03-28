@@ -3,7 +3,7 @@ services:
     container_name: demo_test_api
     environment: 
       - DB_NAME=habits
-      - DB_CONNECTION=mongodb://hiho:hihohabitpass@db:5000
+      - DB_CONNECTION=mongodb://hiho:hihopass@db:27017
     depends_on:
       - db
     tty: true
@@ -11,11 +11,11 @@ services:
     container_name: test_db
     volumes:
       - "test_db:/var/lib/mongodb/data"
-      #- "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
       - MONGO_INITDB_DATABASE=habits
-      - MONGO_INITDB_ROOT_PASSWORD=hihohabitpass
+      - MONGO_INITDB_ROOT_PASSWORD=hihopass
 volumes:
   test_db:
 networks: 

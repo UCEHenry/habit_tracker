@@ -16,7 +16,7 @@ class User {
         return new Promise(async (resolve, reject) => {
             try{
                 const db = await init();
-                let userData = await db.collection('users').find({username:username}).toArray()
+                let userData = await db.collection('users').find({"username":username}).toArray()
                 let user = new User({...userData[0], username: userData[0].username});
                 resolve(user)
             } catch (err) {
@@ -28,7 +28,7 @@ class User {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                let userData = await db.collection('users').insertOne({ username, password })
+                let userData = await db.collection('users').insertOne({ "username": username, "password": password })
                 let newUser = new User(userData.ops[0]);
                 resolve (newUser);
             } catch (err) {

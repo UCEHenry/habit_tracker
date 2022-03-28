@@ -11,5 +11,5 @@ services:
     image: mongo:latest
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
-    volumes:
-      - "./db/migrations:/docker-entrypoint-initdb.d/:ro"
+    # volumes:
+      # - "./db/migrations:/docker-entrypoint-initdb.d/:ro"

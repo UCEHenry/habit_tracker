@@ -7,7 +7,7 @@ server.use(express.json());
 
 const habitRoutes = require('./controllers/habits');
 
-server.use('/habits', habitRoutes)
+//server.use('/habits', habitRoutes)
 
 server.get('/', (req, res) => res.send('Welcome to Habit tracker'));
 

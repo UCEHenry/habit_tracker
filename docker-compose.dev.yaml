@@ -1,0 +1,25 @@
+services:
+  api:
+    container_name: dev_api
+    ports: 
+      - 3000:3000
+    environment: 
+      - DB_NAME=habits
+      - DB_CONNECTION=mongodb://hiho:hihohabitpass@db:27017
+    depends_on:
+      - db
+    command: bash -c "npm install && npm run seedDev && npm run dev"
+  db:
+    container_name: dev_db
+    volumes:
+      - "dbdata:/var/lib/mongodb/data"
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=hiho
+      - MONGO_INITDB_DATABASE=habits
+      - MONGO_INITDB_ROOT_PASSWORD=hihohabitpass
+volumes:
+  dbdata:
+networks: 
+  default:
+    name: app_dev

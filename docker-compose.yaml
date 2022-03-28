@@ -1,41 +1,15 @@
 version: '3'
 services:
-  client:
-    container_name: habit_client
-    build: ./client
-    image: debug_client
-    ports: 
-      - 8080:8080
-    working_dir: /code
-    volumes:
-      - type: bind
-        source: ./client
-        target: /code
-    command: [ "http-server" ]
-  server:
+  api:
     image: node:12.18.4
     working_dir: /code
-    ports: 
-      - 3000:3000
-    environment: 
-      - DB_NAME=habits
-      - DB_CONNECTION=mongodb://hiho:hihohabitpass@db:27017
-    depends_on:
-      - db
     volumes:
       - type: bind
         source: ./api
         target: /code
-    command: bash -c "npm install && npm start"
-
   db:
     image: mongo:latest
-    volumes:
-      - "dbdata:/var/lib/mongodb/data"
-      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
-      - MONGO_INITDB_DATABASE=habits
-      - MONGO_INITDB_ROOT_PASSWORD=hihohabitpass
-volumes:
-  dbdata:
+    volumes:
+      - "./db/migrations:/docker-entrypoint-initdb.d/:ro"

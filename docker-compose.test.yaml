@@ -3,7 +3,7 @@ services:
     container_name: demo_test_api
     environment: 
       - DB_NAME=habits
-      - DB_CONNECTION=mongodb://hiho:hihopass@db:27017
+      - DB_CONNECTION=mongodb://hiho:habitspass@db:27017
     depends_on:
       - db
     tty: true
@@ -15,7 +15,7 @@ services:
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
       - MONGO_INITDB_DATABASE=habits
-      - MONGO_INITDB_ROOT_PASSWORD=hihopass
+      - MONGO_INITDB_ROOT_PASSWORD=habitspass
 volumes:
   test_db:
 networks: 

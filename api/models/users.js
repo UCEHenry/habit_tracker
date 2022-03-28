@@ -24,6 +24,7 @@ class User {
             }
         })
     }
+
     static createUser(username, password) {
         return new Promise (async (resolve, reject) => {
             try {
@@ -36,9 +37,11 @@ class User {
             }
         });
     }
+
     updateUser(username) {
 
     }
+    
     destroy(username) {
 
     }

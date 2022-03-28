@@ -9,6 +9,11 @@ const resetTestDB = () => {
             connection = await MongoClient.connect(process.env.DB_CONNECTION);
             db = await connection.db(process.env.DB_NAME)
             await db.collection('users').deleteMany({});
+            await db.collection('users').insertMany([
+                {username:"phil", password: "fresh"},
+                {username:"carlton", password: "prince"},
+                {username:"new", password: "reset"}
+            ])
             // require('./test_seeds')
             resolve('Test DB reset');
         } catch (err) {

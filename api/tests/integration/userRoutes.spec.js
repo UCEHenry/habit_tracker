@@ -55,10 +55,10 @@ describe('user endpoints', () => {
     // Should delete selected user.
     it('Should delete selected user.', async () => {
         const res = await request(api)
-            .delete('/users/john')
+            .delete('/users/phil')
         expect(res.statusCode).toEqual(204);
 
-        const userRes = await request(api).get('/users/john');
+        const userRes = await request(api).get('/users/phil');
         expect(userRes.statusCode).toEqual(404);
         expect(userRes.body).toHaveProperty('err');
     })

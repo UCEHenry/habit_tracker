@@ -18,8 +18,8 @@ describe('user endpoints', () => {
     })
     // Should post new user.
     it('Should post new user.', async () => {
-        const res = await (await request(api)
-        .post('/user'))
+        const res = await request(api)
+        .post('/user')
         .send({
             username: "john",
             password: "abc"

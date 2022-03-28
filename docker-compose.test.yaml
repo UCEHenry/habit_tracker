@@ -1,6 +1,6 @@
 services:
   api:
-    container_name: test_api
+    container_name: demo_test_api
     environment: 
       - DB_NAME=habits
       - DB_CONNECTION=mongodb://hiho:hihohabitpass@db:27017
@@ -11,7 +11,7 @@ services:
     container_name: test_db
     volumes:
       - "test_db:/var/lib/mongodb/data"
-      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+      #- "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
       - MONGO_INITDB_DATABASE=habits
@@ -20,4 +20,4 @@ volumes:
   test_db:
 networks: 
   default:
-    name: demo_app_test
+    name: app_test

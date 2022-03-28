@@ -1,8 +1,19 @@
 const request = require('supertest');
-const app = require('../../server.js')
+const app = require('../../server.js');
+const MongoClient = require("mongodb/lib/mongo_client");
+const resetTestDB = require('./config.js')
+
 
 describe('user endpoints', () => {
     let api;
+
+    beforeEach(async () => {
+        await resetTestDB.resetTestDB()
+        // connection = await MongoClient.connect(process.env.DB_CONNECTION)
+        // db = await connection.db(process.env.DB_NAME);
+        // // load('./test_seeds.js');
+        // await db.collection('users').deleteMany({});
+    });
 
     beforeAll(async () => {
         api = app.listen(5000, () => console.log('Test server running on port 5000'))
@@ -25,7 +36,7 @@ describe('user endpoints', () => {
         expect(res.statusCode).toEqual(200)
     })
 
-    // Should post new user.
+    // Should create new user.
     it('Should post new user.', async () => {
         const res = await request(api)
         .post('/users')

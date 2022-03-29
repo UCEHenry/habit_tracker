@@ -26,7 +26,7 @@ describe('habit endpoints', () => {
     
     // Should get a habit.
     it('Should get habit.', async () => {
-        const res = await request(api).get('/users/phil')
+        const res = await request(api).get('/habits/phil')
         console.log("get habit", res.body)
         expect(res.statusCode).toEqual(200)
     })

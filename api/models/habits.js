@@ -6,7 +6,7 @@ class Habit {
         this.username = data.username;
         this.password = data.password;
         this.habit = new Object(data.habit);
-        //this.habitname = data.habitname;
+        this.habitname = data.habitname;
         //this.schedule = data.schedule;
         //this.completed =  data.completed;
         //this.dates = data.dates;
@@ -21,9 +21,8 @@ class Habit {
             try{
                 const db = await init();
                 let habitData = await db.collection('users').find({ username: username }).toArray()
-                let habit = new Habit({...habitData[0], username: habitData[0].username, password: habitData[0].password, habit:habitData[0].habit});
-                console.log(habit);
-                resolve(habit)
+                habitData.map(h => {new Habit({...h}) 
+                 resolve(h)})
             } catch (err) {
                 reject(`Habit: ${username} not found.`)
             }

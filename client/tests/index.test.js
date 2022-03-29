@@ -73,17 +73,20 @@ describe("Checks JS files", () => {
                 }
                 const response = await app.submitLogin(fakeSubmitEvent)
                 expect(response).toStrictEqual({ "status": 200 })
-                // Should send failed submission
-                it("Should send error duruing creation", async () => {
-                    const fakeSubmitEvent = {
-                        preventDefault: jest.fn(),
-                        target: [{ value: "tesyMcTestface" }, { value: "test1234" }]
-                    }
-                    const response = await app.submitLogin(fakeSubmitEvent)
-                    expect(response).toStrictEqual({ "status": 422 })
-                })
 
+
+            })
+            // Should send failed submission
+            it("Should send error duruing creation", async () => {
+                const fakeSubmitEvent = {
+                    preventDefault: jest.fn(),
+                    target: [{ value: "tesyMcTestface" }, { value: "test1234" }]
+                }
+                const response = await app.submitLogin(fakeSubmitEvent)
+                expect(response).toStrictEqual({ "status": 422 })
             })
         })
 
     })
+})
+

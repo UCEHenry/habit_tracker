@@ -1,7 +1,6 @@
 const Habit = require('../models/habits');
 
 async function send(req, res) {
-    console.log("This is a test",req.body)
     try{
         const username = req.body.username
         const habitData = req.body.habit
@@ -14,11 +13,14 @@ async function send(req, res) {
 }
 
 async function show(req, res) {
+    console.log("inside /controllers/habits")
     try{
+        console.log(req.params.username)
         const habit = await Habit.findByUsername(req.params.username)
         res.status(200).json(habit)
     } catch (err) {
         res.status(404).json({err})
+        console.log(req.params.username)
     }
 }
 

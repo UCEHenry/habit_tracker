@@ -1,5 +1,5 @@
-const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
-passwordValidation()
+// const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
+// passwordValidation()
 async function registerNewUser(event) {
     event.preventDefault()
 
@@ -35,15 +35,13 @@ function passwordValidation() {
     const repeatPassword = document.getElementById('registerCheckPassword')
     
     repeatPassword.onkeyup = () => {
-        console.log(password)
-        console.log(repeatPassword)
+
         if (repeatPassword.value === password.value) {
             repeatPassword.setAttribute('class', ' form-control border-success')
-            console.log('same')
-
         }  else {
             repeatPassword.setAttribute('class', ' form-control border-danger')
-            console.log('not same')
         }
     }
 }
+
+module.exports ={registerNewUser, passwordValidation}

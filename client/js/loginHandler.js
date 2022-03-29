@@ -1,6 +1,6 @@
-const logInForm = document.querySelector(".logInForm")
+// const logInForm = document.querySelector(".logInForm")
 
-logInForm.addEventListener('submit', userLogIn)
+// logInForm.addEventListener('submit', userLogIn)
 
 async function userLogIn (e) {
     e.preventDefault()
@@ -39,3 +39,5 @@ async function userLogIn (e) {
         console.log(`Failed to get Log In, reason: ${err}`);
     }
 }
+
+module.exports = {userLogIn}

@@ -32,8 +32,7 @@
                     <li class="text-white">Habits dashboard</li>
                 </ul>
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Log Out</button>
+                    <button type="button" class="btn btn-outline-light me-2">Log Out</button>
                 </div>
             </div>
         </div>
@@ -42,7 +41,10 @@
 
         <section id="heroStats" class="container my-5">
             <h1>Welcome User</h1>
+            <button type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal"
+                        data-bs-target="#createHabitModal">+ create habit</button>
         </section>
+        
         <section id="habitsSection" class="container">
             <script defer type="text/x-handlebars-template" id="template">
             {{#each habitList}}

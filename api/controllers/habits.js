@@ -7,7 +7,6 @@ async function send(req, res) {
         const habit = await Habit.createHabit(username, habitData)
         res.status(201).json(habit)
     } catch (err) {
-        console.log("habit/controller", req.body.habit)
         res.status(422).json({err})
     }
 }
@@ -24,7 +23,6 @@ async function show(req, res) {
 
 async function remove(req, res) {
     try {
-        console.log("controller/habit/req.body in catch HELLLOOOOOOOOOO", req.params.habitname)
         //const habit = await Habit.findByIdAndHabitname(req.params.username, req.params.habitname);
         //console.log("in try in habit controllers", habit)
         await Habit.Remove(req.params.username, req.params.habitname)

@@ -27,7 +27,7 @@ describe('user endpoints', () => {
     // Should get a user.
     it('Should get user.', async () => {
         const res = await request(api).get('/users/phil')
-        console.log("get user", res.body)
+        //console.log("get user", res.body)
         expect(res.statusCode).toEqual(200)
     })
 

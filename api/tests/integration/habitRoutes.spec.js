@@ -27,25 +27,45 @@ describe('habit endpoints', () => {
     // Should get a habit.
     it('Should get habit.', async () => {
         const res = await request(api).get('/habits/phil')
-        console.log("get habit", res.body)
+        //console.log("get habit", res.body)
         expect(res.statusCode).toEqual(200)
     })
 
     // // Should create new habit.
-    // it('Should post new habit.', async () => {
-    //     const res = await request(api)
-    //     .post('/john/walking')
-    //     .send({
-    //         username: "john",
-    //         habit: {habitName:'walking', schedule:'weekly',completed:'true', dates:[], currentStreak:1, longestStreak:2}
-    //     })
-    //     expect(res.statusCode).toEqual(201)
-    //     expect(res.body).toHaveProperty("habit")
+    it('Should post new habit to a user with no habits.', async () => {
+        const res = await request(api)
+        .post('/habits/carlton')
+        .send({
+            username: "carlton",
+            habit:{habitName:"wondering",schedule:'weekly',completed:'true', dates:[], currentStreak:1, longestStreak:3}
+        })
+        //console.log("post habit", res.body)
+        expect(res.statusCode).toEqual(201)
+        expect(res.body).toHaveProperty("habit")
 
-    //     const userRes = await request(api).get('/john/walking')
-    //     expect(userRes.statusCode).toEqual(200);
-    //     // expect(userRes.body.length).toEqual(1);
-    // })
+        const userRes = await request(api).get('/habits/carlton')
+        //console.log("post habit", userRes.body)
+        expect(userRes.statusCode).toEqual(200);
+        // expect(userRes.body.length).toEqual(1);
+    })
+
+
+    it('Should post new habit to a user with existing habits.', async () => {
+        const res = await request(api)
+        .post('/habits/phil')
+        .send({
+            username: "phil",
+            habit:{habitName:"flying",schedule:'monthly',completed:'true', dates:[], currentStreak:0, longestStreak:1}
+        })
+        //console.log("post habit", res.body)
+        expect(res.statusCode).toEqual(201)
+        expect(res.body).toHaveProperty("habit")
+
+        const userRes = await request(api).get('/habits/phil')
+        //console.log("post habit", userRes.body)
+        expect(userRes.statusCode).toEqual(200);
+        // expect(userRes.body.length).toEqual(1);
+    })
 
     // // Should delete selected user.
     // it('Should delete selected user.', async () => {

@@ -33,10 +33,13 @@ class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                habit = {habitname, schedule, completed, dates, currentStreak, longestStreak}
-                let habitData = await db.collection('users').aggregate([ { $match: { username: username}}, { $addFields: { habit: habit }}]).toArray()
-                let newHabit = new Habit(habitData.ops[0]);
-                resolve (newHabit);
+                let habitData = await db.collection('users').update({username: username}, {$addToSet:{habit: habit}})
+                //console.log("In models in try", habitData)
+                let updatedhabitData = await db.collection('users').find({ username: username }).toArray()
+                updatedhabitData.map(h => {new Habit({...h}) 
+                resolve(h)})
+                //let newHabit = new Habit(updatedhabitData.ops[0]);
+                //resolve (newHabit);
             } catch (err) {
                 reject(`Error creating habit: ${username}`);
             }

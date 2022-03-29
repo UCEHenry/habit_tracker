@@ -7,20 +7,18 @@ async function send(req, res) {
         const habit = await Habit.createHabit(username, habitData)
         res.status(201).json(habit)
     } catch (err) {
-        // console.log(err)
+        console.log("habit/controller", req.body.habit)
         res.status(422).json({err})
     }
 }
 
 async function show(req, res) {
-    console.log("inside /controllers/habits")
     try{
-        console.log(req.params.username)
         const habit = await Habit.findByUsername(req.params.username)
         res.status(200).json(habit)
     } catch (err) {
         res.status(404).json({err})
-        console.log(req.params.username)
+        
     }
 }
 

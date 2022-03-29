@@ -13,13 +13,12 @@ db.createCollection("users", {
                     description: "Not a string!"
                 },
                 habit: {
-                    bsonType: "object",
-                    description: "Not an object!",
-                    required: ["habitName", "schedule", "completed", "dates", "currentStreak", "longestStreak"],
+                    bsonType: "array",
+                    description: "Not an array!",
                     properties: {
                         habitName: {
                             bsonType: "string",
-                            description: "Not a string!"
+                            description: "Not an string",
                         },
                         schedule: {
                             bsonType: "string",
@@ -41,6 +40,10 @@ db.createCollection("users", {
                             bsonType: "int",
                             description: "Not an int!"
                         }
+
+
+                    
+
                     }
                 }
             }

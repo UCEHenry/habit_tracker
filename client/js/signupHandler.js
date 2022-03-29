@@ -2,6 +2,7 @@ const signupFormSubmit = document.getElementById('signupForm').addEventListener(
 
 async function registerNewUser(event) {
     event.preventDefault()
+
     const userData = {
         username: event.target['registerUsername'].value,
         password: event.target['registerPassword'].value

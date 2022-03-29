@@ -1,5 +1,5 @@
-const signupFormSubmit = document.getElementById('signupForm').addEventListener('submit', registerNewUser)
-
+const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
+passwordValidation()
 async function registerNewUser(event) {
     event.preventDefault()
     const userData = {
@@ -22,5 +22,20 @@ async function registerNewUser(event) {
     } catch (err) {
         alert(`Account creation failed: ${err}`)
         console.log(`Account not created: ${err}`);
+    }
+}
+
+function passwordValidation() {
+    const password = document.getElementById('registerPassword')
+    const repeatPassword = document.getElementById('repeatPass')
+    
+    repeatPassword.onkeyup = () => {
+        if (password === repeatPassword) {
+            repeatPassword.setAttribute('class', ' form-control border-success')
+
+        }  else {
+            repeatPassword.setAttribute('class', ' form-control border-danger')
+
+        }
     }
 }

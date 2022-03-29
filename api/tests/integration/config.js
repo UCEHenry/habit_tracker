@@ -10,7 +10,7 @@ const resetTestDB = () => {
             db = await connection.db(process.env.DB_NAME)
             await db.collection('users').deleteMany({});
             await db.collection('users').insertMany([
-                {username:"phil", password: "fresh"},
+                {username:"phil", password: "fresh", habit: {habitname: 'sleep', schedule: 'day', completed: 'true', dates: ['29/03/2022'], currentStreak: 1, longestStreak: 2}},
                 {username:"carlton", password: "prince"},
                 {username:"new", password: "reset"}
             ])

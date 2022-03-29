@@ -1,75 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
 body {
+  animation: fadeIn 3s;
+  -webkit-animation: fadeIn 3s;
+  -moz-animation: fadeIn 3s;
+  -o-animation: fadeIn 3s;
+  -ms-animation: fadeIn 3s;
+}
+
+header {
+  background-color: rgb(63, 63, 63);
   font-family: 'Comfortaa', cursive;
 }
 
+header li {
+  font-size: 22px;
+}
+
 #banner {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    height: auto;
-    width: auto;
-    font-family: 'Comfortaa', cursive;
-    animation: fadeIn 3s;
-    -webkit-animation: fadeIn 3s;
-    -moz-animation: fadeIn 3s;
-    -o-animation: fadeIn 3s;
-    -ms-animation: fadeIn 3s;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: auto;
+  width: auto;
+  font-family: 'Comfortaa', cursive;
 }
 
 #title {
-    display: flex;
-    flex-direction: column;
-    margin: 4em;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 4em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
-#signUpBtn, #logInBtn {
-    width: 180px;
-    height: 40px;
-    margin: 4px 2px;
-    border-radius: 12px;
-    font-size: small;
-    color: white;
-    border: none;
-    cursor: pointer;
-    background-color: rgb(63, 63, 63);
+#signUpBtn {
+  width: 180px;
+  height: 40px;
+  margin: 4px 2px;
+  border-radius: 12px;
+  font-size: small;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(63, 63, 63);
 }
 
-#signUpBtn:hover, #logInBtn:hover {
-    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: rgb(34, 34, 34);
+#signUpBtn:hover {
+  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: rgb(34, 34, 34);
 }
 
 #banner img {
-    height: 100vh;
-    width: 100%;
-    object-fit: cover;
+  height: calc(100vh - 72px);
+  width: 100%;
+  object-fit: cover;
 }
 
-  @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-moz-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-o-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}

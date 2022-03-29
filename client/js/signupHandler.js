@@ -1,11 +1,15 @@
 
+const signupFormSubmit = document.getElementById('signupForm').addEventListener('submit', registerNewUser)
+
 function registerNewUser(event) {
+    event.preventDefault()
     console.log('registration form submitted')
     try{
         const userData = {
-            username: event.target['username'].value,
-            password: event.target['password'].value
+            username: event.target['registerUsername'].value,
+            password: event.target['registerPassword'].value
         }
+        console.log(userData)
         const options = {
             method: 'POST',
             body: JSON.stringify(userData),

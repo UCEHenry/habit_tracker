@@ -1,15 +1,16 @@
-function fill_template() {
-    let userHabits = [
-        {habitName:"drink 2L of water"},
-        {habitName:"workout"},
-        {habitName:"clean windows"},
-        {habitName:"practise speech"},
-    ]
-    const template = Handlebars.compile(document.querySelector("#template").innerHTML)
-    const filled = template(data, {
-        noEscape:true
+window.onload = event => {
+    let data = {
+        
+        habitList: [
+            { habitName: "Exercise", id:"1",  longestStreak:"1", currentStreak:"1", frequency: "daily" },
+            { habitName: "Drink Water", id:"2" },
+            { habitName: "Sleep", id:"3" }
+        ],
+    };
+    
+    let template = Handlebars.compile(document.querySelector('#template').innerHTML);
+    let filled = template(data, {
+        noEscape: true
     })
-    document.querySelector('#habitsSection').innerHTML = filled
+    document.querySelector('#habitsSection').innerHTML = filled;
 }
-
-window.onload

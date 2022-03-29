@@ -1,7 +1,7 @@
 const User = require('../models/users')
 
 async function send(req, res) {
-    console.log("This is a test",req.body)
+    // console.log("This is a test",req.body)
     try{
         const username = req.body.username
         const password = req.body.password
@@ -15,7 +15,7 @@ async function send(req, res) {
 
 async function show(req, res) {
     try{
-        const user = await User.findByUsername(req.param.username)
+        const user = await User.findByUsername(req.params.username)
         res.status(200).json(user)
     } catch (err) {
         res.status(404).json({err})

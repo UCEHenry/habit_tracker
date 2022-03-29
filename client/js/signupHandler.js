@@ -1,15 +1,13 @@
-
 const signupFormSubmit = document.getElementById('signupForm').addEventListener('submit', registerNewUser)
 
-function registerNewUser(event) {
+async function registerNewUser(event) {
     event.preventDefault()
-    console.log('registration form submitted')
+    const userData = {
+        username: event.target['registerUsername'].value,
+        password: event.target['registerPassword'].value
+    }
+
     try{
-        const userData = {
-            username: event.target['registerUsername'].value,
-            password: event.target['registerPassword'].value
-        }
-        console.log(userData)
         const options = {
             method: 'POST',
             body: JSON.stringify(userData),
@@ -17,12 +15,12 @@ function registerNewUser(event) {
                 "Content-Type": "application/json"
             }
         }
-        fetch(`${API_URL}/users`, options)
-        .then(resp = resp.json())
-        .then(data => {
-            // if (response is positive) {redirect to dashboard} else {show error to user}
-        })
+
+        const response = await fetch(`${API_URL}/users`, options);
+        const data = await response.json()
+
     } catch (err) {
         alert(`Account creation failed: ${err}`)
+        console.log(`Account not created: ${err}`);
     }
 }

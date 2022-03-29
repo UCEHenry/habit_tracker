@@ -7,8 +7,8 @@ async function userLogIn (e) {
     console.log(e)
 
     const userData = {
-        username: e.target.exampleInputUsername1.value,
-        password: e.target.exampleInputPassword1.value,
+        username: e.target.logInUsername.value,
+        password: e.target.logInPassword.value,
     };
     console.log(e.target)
     try {
@@ -24,6 +24,7 @@ async function userLogIn (e) {
         
         const response = await fetch(url, options);
         let data = await response.json();
+
         // if (data.err) {
         //     throw Error(data.err);
         // }
@@ -32,6 +33,7 @@ async function userLogIn (e) {
         //     // window.location.href = current.replace(/#(.*)$/, '') + '#' + id;
         //     window.location.hash = `#${data.id}`
         // )
+
     } catch (err) {
         alert(`Unable to Log In: ${err}`);
         console.log(`Failed to get Log In, reason: ${err}`);

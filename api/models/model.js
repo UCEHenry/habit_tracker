@@ -26,15 +26,14 @@ class User {
 
     static findByUsername(username) {
         return new Promise(async (resolve, reject) => {
-            try {
+            console.log(username)
+            try{
                 const db = await init();
-                let habitData = await db.collection('users').find({ username: username }).toArray()
-                habitData.map(h => {
-                    new Habit({ ...h })
-                    resolve(h)
-                })
+                let userData = await db.collection('users').find({ username: username }).toArray()
+                let user = new User({...userData[0], username: userData[0].username});
+                resolve(user)
             } catch (err) {
-                reject(`Habit: ${username} not found.`)
+                reject(`User: ${username} not found.`)
             }
         })
     }
@@ -52,7 +51,7 @@ class User {
         });
     }
     updateUser(oldUsername, newUsername) {
-        return new Promise(async (resolve, rejecct) => {
+        return new Promise(async (resolve, reject) => {
             try{
                 let updatedUserData = await db.collection('users').updateOne({usename:oldUsername}, {$set:{username:newUsername}})
                 resolve(`Username ${oldUsername} changed to ${newUsername}`)
@@ -78,44 +77,30 @@ class User {
             try {
                 const db = await init();
                 let habitData = await db.collection('users').update({ username: username }, { $addToSet: { habit: habit } })
-                //console.log("In models in try", habitData)
+
                 let updatedhabitData = await db.collection('users').find({ username: username }).toArray()
                 updatedhabitData.map(h => {
                     new Habit({ ...h })
                     resolve(h)
                 })
-                //let newHabit = new Habit(updatedhabitData.ops[0]);
-                //resolve (newHabit);
             } catch (err) {
                 reject(`Error creating habit: ${username}`);
             }
         });
     }
 
-    updateHabit(username, habitname) {
-        return new Promise(async (resolve, rejecct) => {
+    updateHabit(username, habitName) {
+        return new Promise(async (resolve, reject) => {
             try{
-                let habitData = await db.collection('users').find().toArray()
+                let updatedHabitData = await db.collection('users').updateOne({username:username, "habit.habitName":habitName}, {$set:{"habit.$.habitName": habitName}})
 
-                updatedHabitData
+                resolve(`Updated the habit: ${habitName} for ${username}`)
             } catch (err) {
                 reject(`Habit: ${habitname} not found.`)
             }
         })
     }
 
-    static findByUsernameAndHabitname(username, habitname) {
-        return new Promise(async (resolve, reject) => {
-            try{
-                const db = await init();
-                let habitData = await db.collection('users').find({ username: username, 'habit.habitName': habitname }).toArray()
-                let habit = new Habit({...habitData[0], username: habitData[0].username, habit: habitData[0].habit[habitname]});
-                resolve(habit)
-            } catch (err) {
-                reject(`Habit: ${username} not found.`)
-            }
-        })
-    }
     removeHabit(username, habitname) {
         return new Promise(async(resolve, reject) => {
             try {

@@ -13,7 +13,7 @@ services:
     container_name: dev_db
     volumes:
       - "dbdata:/var/lib/mongodb/data"
-      #- "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
       - MONGO_INITDB_DATABASE=habits

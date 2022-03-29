@@ -61,7 +61,7 @@ describe("Checks JS files", () => {
                     preventDefault: jest.fn(),
                     target: [{ value: username }, { value: password }]
                 }
-                app.submitLogin(fakeSubmitEvent)
+                app.registerNewUser(fakeSubmitEvent)
                 expect(fetch.mock.calls[0][1]).toHaveProperty("method", "POST")
                 expect(fetch.mock.calls[0][1]).toHaveProperty("body", JSON.stringify({ username: username, password: password }))
             })

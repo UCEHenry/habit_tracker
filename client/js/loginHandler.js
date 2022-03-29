@@ -4,13 +4,11 @@
 
 async function userLogIn (e) {
     e.preventDefault()
-    console.log(e)
-
     const userData = {
         username: e.target.logInUsername.value,
-        password: e.target.logInPassword.value,
+        password: e.target.logInPassword.value
     };
-    console.log(e.target)
+    
     try {
         const options = {
             method: 'POST',
@@ -20,7 +18,7 @@ async function userLogIn (e) {
             }
         };
     
-        console.log(options.body)
+        // console.log(options.body)
         
         const response = await fetch(url, options);
         let data = await response.json();

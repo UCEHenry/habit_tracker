@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
+
+*{
+  font-family: 'Comfortaa', cursive;
+}
+
 body {
   animation: fadeIn 3s;
   -webkit-animation: fadeIn 3s;
@@ -10,7 +15,6 @@ body {
 
 header {
   background-color: rgb(63, 63, 63);
-  font-family: 'Comfortaa', cursive;
 }
 
 header li {
@@ -19,8 +23,12 @@ header li {
 
 .infoBoard {
   background-color: rgb(63, 63, 63);
-  height: 100vh;
+  height: auto;
   color: white;
+  padding: 5em;
+  /* justify-content: center; 
+  align-items: center; 
+  text-align: center;*/
 }
 
 #banner {

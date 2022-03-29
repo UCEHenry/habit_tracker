@@ -67,16 +67,16 @@ describe('habit endpoints', () => {
         // expect(userRes.body.length).toEqual(1);
     })
 
-    // // Should delete selected user.
-    // it('Should delete selected user.', async () => {
-    //     const res = await request(api)
-    //         .delete('/phil/sleep')
-    //     expect(res.statusCode).toEqual(204);
+    //Should delete selected user.
+    it('Should delete selected habit from a user.', async () => {
+        const res = await request(api)
+            .delete('/habits/phil/sleep')
+        expect(res.statusCode).toEqual(204);
 
-    //     const userRes = await request(api).get('/phil/sleep');
-    //     expect(userRes.statusCode).toEqual(404);
-    //     expect(userRes.body).toHaveProperty('err');
-    // })
+        const userRes = await request(api).get('/habits/phil/sleep');
+        expect(userRes.statusCode).toEqual(404);
+        //expect(userRes.body).toHaveProperty('err');
+    })
 
 })
 

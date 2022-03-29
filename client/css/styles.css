@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
+body {
+  font-family: 'Comfortaa', cursive;
+}
+
 #banner {
     display: grid;
     grid-template-columns: 1fr 3fr;

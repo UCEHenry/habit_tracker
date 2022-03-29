@@ -105,5 +105,35 @@ describe("Checks JS files", () => {
         // })
 
     })
+    describe("dashboard js files", () => {
+        describe("habitCardHandler.js", () => {
+            beforeEach(() => {
+                app = require("../js/habitCardHandler")
+                document.documentElement.innerHTML = html.toString();
+            })
+            afterEach(() => {
+                fetch.resetMocks();
+            })
+            // Should receive correct username 
+            
+            // Should make successful request for habits
+            it("Should make successful request for habits to /habit url", async () => {
+                let habit = await getAllHabits()
+                expect(fetch.mock.calls[0][0]).toMatch("/articles$/")
+            })
+
+            // Should be able to make new habit
+
+            // Should be able to edit existing habit
+            // Should delete habit
+            // Should delete user
+            // it('Should have x number of habits', async () => {
+            //     await getAllHabits()
+            //     expect()
+            // })
+            // 
+
+        })
+    })
 })
 

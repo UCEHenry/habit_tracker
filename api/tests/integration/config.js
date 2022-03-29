@@ -1,34 +1,24 @@
-const MongoClient = require("mongodb");
+const MongoClient = require("mongodb/lib/mongo_client");
 
-export default class TestDBHelper {
-    constructor() {
-        this.db = null;
-        // this.server = new
-        this.connection = null;
-    }
-    async start() {
-        this.connection = await MongoClient.connect(global.__MONGO_URI__, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        })
-        this.db = this.connection.db(global.__MONGO_DB_NAME__)
+let db;
+let connection;
 
-    }
-    stop() {
-        this.connection.close();
-    }
-    async cleanup() {
-        const collections = await this.db.listCollections().toArray();
-        return Promise.all(
-            collections
-                .map(({ name }) => name)
-                .map(collection => this.db.collection(collection).drop())
-        );
-    }
-    async createDoc(collectionName, document) {
-        const { ops } = await this.db
-          .collection(collectionName)
-          .insertOne(document);
-        return ops[0];
-      }
+const resetTestDB = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            connection = await MongoClient.connect(process.env.DB_CONNECTION);
+            db = await connection.db(process.env.DB_NAME)
+            await db.collection('users').deleteMany({});
+            await db.collection('users').insertMany([
+                {username:"phil", password: "fresh"},
+                {username:"carlton", password: "prince"},
+                {username:"new", password: "reset"}
+            ])
+            resolve('Test DB reset');
+        } catch (err) {
+            reject(`Test DB could not be reset: ${err} in ${err.file}`);
+        };
+    });
 }
+
+module.exports = { resetTestDB }

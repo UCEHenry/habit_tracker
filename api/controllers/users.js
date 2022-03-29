@@ -22,4 +22,14 @@ async function show(req, res) {
     }
 }
 
-module.exports = {send, show}
+async function remove(req, res) {
+    try {
+        const user = await User.findByUsername(req.params.username)
+        await user.remove()
+        res.status(204).json('User deleted')
+    } catch(err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = { send, show, remove }

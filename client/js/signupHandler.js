@@ -35,12 +35,15 @@ function passwordValidation() {
     const repeatPassword = document.getElementById('registerCheckPassword')
     
     repeatPassword.onkeyup = () => {
-        if (password === repeatPassword) {
+        console.log(password)
+        console.log(repeatPassword)
+        if (repeatPassword.value === password.value) {
             repeatPassword.setAttribute('class', ' form-control border-success')
+            console.log('same')
 
         }  else {
             repeatPassword.setAttribute('class', ' form-control border-danger')
-
+            console.log('not same')
         }
     }
 }

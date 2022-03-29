@@ -115,7 +115,7 @@ describe("Checks JS files", () => {
                 fetch.resetMocks();
             })
             // Should receive correct username 
-            
+
             // Should make successful request for habits
             it("Should make successful request for habits to /habit url", async () => {
                 let habit = await getAllHabits()
@@ -123,15 +123,57 @@ describe("Checks JS files", () => {
             })
 
             // Should be able to make new habit
-
+            it("Should be able to make new habit /habit url", async () => {
+                const fakeSubmitEvent = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        username: {value: username},
+                        habitname: {value: habitName},
+                        frequency: {value: habitFrequency}
+                    }
+                }
+                const response = await app.createNewHabit(fakeSubmitEvent)
+                expect(fetch.mock.calls[0][1]).toHaveProperty("method", "POST")
+                expect(fetch.mock.calls[0][1]).toHaveProperty("body", JSON.stringify({ username: username, password: password }))
+            })
             // Should be able to edit existing habit
+            it("Should be able to edit existing habit", async () => {
+                const fakeSubmitEvent = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        habitName: {value: habitName},
+                        habitFrequency: {value: habitFrequency}
+                    }
+                }
+                const response = await app.editHabit(fakeSubmitEvent)
+                expect(fetch.mock.calls[0][1]).toHaveProperty("method", "PATCH")
+                expect(fetch.mock.calls[0][1]).toHaveProperty("body", JSON.stringify({ habitName: habitName, habitFrequency: habitFrequency }))
+            })
             // Should delete habit
+            it("Should delete habit", async () => {
+                const fakeSubmitEvent = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        username: {value: username},
+                        habitname: {value: habitName},
+                    }
+                }
+                const response = await app.deleteHabit(fakeSubmitEvent)
+                expect(fetch.mock.calls[0][1]).toHaveProperty("method", "DELETE")
+                expect(fetch.mock.calls[0][1]).toHaveProperty("body", JSON.stringify({ username: username, habitname: habitname }))
+            })
             // Should delete user
-            // it('Should have x number of habits', async () => {
-            //     await getAllHabits()
-            //     expect()
-            // })
-            // 
+            it("Should delete habit", async () => {
+                const fakeSubmitEvent = {
+                    preventDefault: jest.fn(),
+                    target: {
+                        username: {value: username},
+                    }
+                }
+                const response = await app.deleteUser(fakeSubmitEvent)
+                expect(fetch.mock.calls[0][1]).toHaveProperty("method", "DELETE")
+                expect(fetch.mock.calls[0][1]).toHaveProperty("body", JSON.stringify({ username: username, habitname: habitname }))
+            })
 
         })
     })

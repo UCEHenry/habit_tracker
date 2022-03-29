@@ -14,7 +14,7 @@ body {
 }
 
 header {
-  background-color: rgb(63, 63, 63);
+  background-color: rgb(34, 34, 34);
 }
 
 header li {
@@ -26,9 +26,7 @@ header li {
   height: auto;
   color: white;
   padding: 5em;
-  /* justify-content: center; 
-  align-items: center; 
-  text-align: center;*/
+  text-align: center; 
 }
 
 #banner {

@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  <header class="p-3 text-white">
+  <header class="p-3 text-white sticky-top">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-auto justify-content-center mb-md-0">
@@ -41,7 +41,8 @@
     <section id="title">
       <h2>Welcome to Habits</h2>
       <p>A place where you can track all your personalised habits in one location.</p>
-      <button id="signUpBtn"> Sign Up </button>
+      <button id="signUpBtn" onClick="document.getElementById('signUpForm').scrollIntoView();" > Sign Up </button>
+
     </section>
     <img src="./css/images/home_banner.jpg">
   </div>
@@ -80,7 +81,7 @@
   </div>
 
   <section class="infoBoard">
-    <p>How it works</p>
+    <h2>How it works</h2>
     <div class="container marketing">
 
       <div class="row text-center">
@@ -103,7 +104,7 @@
     </div>
   </section>
 
-  <section class="vh-100">
+  <section class="vh-100" id="signUpForm">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">

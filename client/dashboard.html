@@ -53,14 +53,14 @@
                             <div class="d-flex justify-content-end align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseExample_{{this.habitName}}"
-                                        aria-expanded="false" aria-controls="collapseExample_{{this.habitName}}">View stats</button>
+                                        data-bs-toggle="collapse" data-bs-target="#collapseExample_{{this.id}}"
+                                        aria-expanded="false" aria-controls="collapseExample_{{this.id}}">View stats</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="collapse" id="collapseExample_{{this.habitName}}">
+                    <div class="collapse" id="collapseExample_{{this.id}}">
                         <div class="card card-body">
                            longest streak {{this.longestStreak}}
                            current streak {{this.currentStreak}}

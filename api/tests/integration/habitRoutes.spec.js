@@ -73,9 +73,10 @@ describe('habit endpoints', () => {
             .delete('/habits/phil/sleep')
         expect(res.statusCode).toEqual(204);
 
-        const userRes = await request(api).get('/habits/phil/sleep');
-        expect(userRes.statusCode).toEqual(404);
-        //expect(userRes.body).toHaveProperty('err');
+        const userRes = await request(api).get('/habits/phil');
+        expect(userRes.statusCode).toEqual(200);
+        //console.log("userRes output", userRes.body.habit);
+        expect(userRes.body.habit.length).toEqual(1);
     })
 
 })

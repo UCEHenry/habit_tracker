@@ -41,6 +41,14 @@ async function updateUser(req, res) {
         res.status(422).json({err})
     }
 }
+// TODO Testing and controllers
+async function removeUser(req, res) {
+    try{
+        res.status(201).json(user)
+    } catch (err) {
+        res.status(422).json({err})
+    }
+}
 
 async function createHabit(req, res) {
     try{
@@ -53,5 +61,21 @@ async function createHabit(req, res) {
     }
 }
 
+async function updateHabit(req, res) {
+    try{
+        res.status(200).json(user)
+    } catch (err) {
+        res.status(422).json({err})
+    }
+}
 
-module.exports = {getAll, getUser, createNewUser, updateUser, createHabit}
+// TODO Testing and controllers
+async function removeHabit(req, res) {
+    try{
+        res.status(201).json(user)
+    } catch (err) {
+        res.status(422).json({err})
+    }
+}
+
+module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit}

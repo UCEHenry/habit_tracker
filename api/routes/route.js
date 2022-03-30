@@ -8,6 +8,6 @@ router.get('/:username', userController.getUser)
 router.delete('/:username', userController.removeUser)
 router.post('/createhabit', userController.createHabit)
 router.delete('/:username/:habitname', userController.remove)
-
+router.post('/login', userController.authLogin)
 
 module.exports = router

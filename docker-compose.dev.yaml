@@ -1,4 +1,16 @@
 services:
+  client:
+    container_name: ddev_client
+    build: ./client
+    image: debug_client
+    ports: 
+      - 8080:8080
+    working_dir: /code
+    volumes:
+      - type: bind
+        source: ./client
+        target: /code
+    command: [ "http-server" ]
   api:
     container_name: dev_api
     ports: 

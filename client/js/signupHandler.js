@@ -2,9 +2,10 @@
 // passwordValidation()
 async function registerNewUser(event) {
     event.preventDefault()
-
-    if (event.target.registerPassword != event.target.registerCheckPassword) {
-        alert("Password does not match")
+    console.log("Hello")
+    console.log(event.target.registerPassword.value + event.target.registerCheckPassword.value)
+    if (event.target.registerPassword.value != event.target.registerCheckPassword.value) {
+        // alert("Password does not match")
     } else {
         const userData = {
             username: event.target['registerUsername'].value,
@@ -44,4 +45,4 @@ function passwordValidation() {
     }
 }
 
-module.exports ={registerNewUser, passwordValidation}
+module.exports = { registerNewUser, passwordValidation }

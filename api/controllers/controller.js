@@ -55,6 +55,7 @@ async function authLogin(req, res){
 }
 
 async function getUser(req, res) {
+    console.log(req.body)
     try{
         const user = await User.findByUsername(req.params.username)
         res.status(200).json(user)

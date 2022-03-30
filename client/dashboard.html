@@ -42,8 +42,60 @@
         <section id="heroStats" class="container my-5">
             <h1>Welcome User</h1>
             <button type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal"
-                        data-bs-target="#createHabitModal">+ create habit</button>
+                        data-bs-target="#createHabitModalLabel">+ create habit</button>
+            <div class="container marketing my-5">
+                <div class="row text-center">
+                    <div class="col-lg-3">
+                    <h2>Least worked on Habits</h2>
+                    <p>Swimming</p>
+                    </div>
+                    <div class="col-lg-3">
+                    <h2>Best Habit</h2>
+                    <p>Exercise</p>
+                    </div>
+                    <div class="col-lg-3">
+                    <h2>Best Streak</h2>
+                    <p>3</p>
+                    </div>
+                    <div class="col-lg-3">
+                    <h2>Completed Habits</h2>
+                    <p>Water</p>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <div class="modal fade" id="createHabitModalLabel" tabindex="-1" aria-labelledby="createHabitModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="createHabitModalLabel">Create Habit</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form class="createHabitForm">
+                    <div class="mb-3">
+                      <label for="habitName" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="habitName">
+                    </div>
+                    <div class="mb-3 createHabitForm">
+                        <label for="habitFrequency">Frequency</label>
+                        <select multiple class="form-control" id="habitFrequency">
+                            <option>Daily</option>
+                            <option>Weekly</option>
+                            <option>Monthly</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Add</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                  </form>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Log in</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
 
         <section id="habitsSection" class="container">
             <script defer type="text/x-handlebars-template" id="template">

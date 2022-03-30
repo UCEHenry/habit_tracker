@@ -11,7 +11,7 @@ router.delete('/:username', userController.removeUser)
 router.post('/createhabit', userController.createHabit)
 router.delete('/:username/:habitname', userController.remove)
 router.patch('/:username', userController.updateHabit)
-router.post('/login', userController.authLogin)
+
 
 
 module.exports = router

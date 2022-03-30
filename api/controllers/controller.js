@@ -99,7 +99,7 @@ async function authLogin(req, res){
         if (!user) { 
             throw new Error('No user with this username') 
         }
-        const authed = await bcrypt.compare(req.body.password, user.password)
+        const authed = bcrypt.compare(req.body.password, user.password)
         if (!!authed){
             const payload = { username: user.username }
             const sendToken = (err, token) => {
@@ -111,7 +111,8 @@ async function authLogin(req, res){
                     token: "Bearer " + token,
                 });
             }
-            jwt.sign(payload, process.env.SECRET, { expiresIn: 3600 }, sendToken);
+            // should be added process.env.SECRET
+            jwt.sign(payload, "secret", { expiresIn: 3600 }, sendToken);
         } else {
             throw new Error('User could not be authenticated')  
         }

@@ -13,7 +13,7 @@ window.onload = event => {
         element.id = id
         id++
     }
-
+    getAllHabits;
 
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(data, {
@@ -28,9 +28,15 @@ hform.addEventListener('submit', createHabit);
 async function createHabit(e) {
     e.preventDefault();
 
-    const habitData = {
+    const username = localStorage.getItem('username');
+    const habit = {
         habitName: e.target.habitName.value,
-        frequency: e.target.habitFrequency.value
+        schedule: e.target.habitSchedule.value
+    }
+
+    const habitData = {
+        username: username,
+        habit: habit
     }
 
     console.log(habitData);
@@ -44,11 +50,36 @@ async function createHabit(e) {
             }
         } 
 
-        const response = await fetch('./data.json', options);
+        const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
 
     } catch(err) {
         alert(`Unable to create Habit: ${err}`);
         console.log(`Failed to create Habit: ${err}`);
     }
+}
+
+async function getAllHabits(){
+    try {
+        const options = { 
+            headers: new Headers({
+                'Authorization': localStorage.getItem('token')
+            }) 
+        }
+
+        const username = localStorage.getItem('username');
+        const response = await fetch(`http://localhost:3000/users/${username}`, options);
+        const data = await response.json();
+
+        if(data.err){
+            console.warn(data.err);
+            logout();
+        }
+
+        return data;
+
+    } catch (err) {
+        console.warn(err);
+    }
+
 }

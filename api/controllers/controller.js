@@ -99,7 +99,7 @@ async function authLogin(req, res){
         if (!user) { 
             throw new Error('No user with this username') 
         }
-        const authed = bcrypt.compare(req.body.password, user.password)
+        const authed = await bcrypt.compare(req.body.password, user.password)
         if (!!authed){
             const payload = { username: user.username }
             const sendToken = (err, token) => {

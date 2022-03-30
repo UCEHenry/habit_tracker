@@ -54,16 +54,16 @@ async function createHabit(e) {
 
 async function getAllUserHabits(){
     try {
+        
         const options = { 
             headers: new Headers({
                 'Authorization': localStorage.getItem('token')
             }) 
         }
-
         const username = localStorage.getItem('username');
         const response = await fetch(`http://localhost:3000/users/${username}`, options);
         const data = await response.json();
-        let listOfHabit = data.user.habit;
+        let listOfHabit = data.habit;
 
         if(data.err){
             console.warn(data.err);

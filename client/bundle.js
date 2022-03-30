@@ -4,9 +4,9 @@ const { userLogIn } = require("./loginHandler")
 const { passwordValidation, registerNewUser } = require("./signupHandler")
 
 // Event listeners
-const logInForm = document.querySelector(".logInForm")
+// const logInForm = document.querySelector(".logInForm")
 
-logInForm.addEventListener('submit', userLogIn)
+// logInForm.addEventListener('submit', userLogIn)
 const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
 
 // Handler functions
@@ -17,43 +17,43 @@ passwordValidation()
 
 // logInForm.addEventListener('submit', userLogIn)
 
-async function userLogIn (e) {
-    e.preventDefault()
-    const userData = {
-        username: e.target.logInUsername.value,
-        password: e.target.logInPassword.value
-    };
+// async function userLogIn (e) {
+//     e.preventDefault()
+//     const userData = {
+//         username: e.target.logInUsername.value,
+//         password: e.target.logInPassword.value
+//     };
     
-    try {
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(userData),
-            headers: {
-                "Content-Type" : "application/json"
-            }
-        };
+//     try {
+//         const options = {
+//             method: 'POST',
+//             body: JSON.stringify(userData),
+//             headers: {
+//                 "Content-Type" : "application/json"
+//             }
+//         };
     
-        // console.log(options.body)
+//         // console.log(options.body)
         
-        const response = await fetch(url, options);
-        let data = await response.json();
+//         const response = await fetch(url, options);
+//         let data = await response.json();
 
-        // if (data.err) {
-        //     throw Error(data.err);
-        // }
-        // else (
-        //     // var current = window.location.href;
-        //     // window.location.href = current.replace(/#(.*)$/, '') + '#' + id;
-        //     window.location.hash = `#${data.id}`
-        // )
+//         // if (data.err) {
+//         //     throw Error(data.err);
+//         // }
+//         // else (
+//         //     // var current = window.location.href;
+//         //     // window.location.href = current.replace(/#(.*)$/, '') + '#' + id;
+//         //     window.location.hash = `#${data.id}`
+//         // )
 
-    } catch (err) {
-        alert(`Unable to Log In: ${err}`);
-        console.log(`Failed to get Log In, reason: ${err}`);
-    }
-}
+//     } catch (err) {
+//         alert(`Unable to Log In: ${err}`);
+//         console.log(`Failed to get Log In, reason: ${err}`);
+//     }
+// }
 
-module.exports = {userLogIn}
+// module.exports = {userLogIn}
 
 },{}],3:[function(require,module,exports){
 // const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
@@ -61,7 +61,7 @@ module.exports = {userLogIn}
 async function registerNewUser(event) {
     event.preventDefault()
 
-    if (event.target.registerPassword != event.target.registerCheckPassword) {
+    if (event.target.registerPassword.value != event.target.registerCheckPassword.value) {
         alert("Password does not match")
     } else {
         const userData = {
@@ -77,8 +77,9 @@ async function registerNewUser(event) {
                     "Content-Type": "application/json"
                 }
             }
+            console.log(options)
 
-            const response = await fetch(`${API_URL}/users`, options);
+            const response = await fetch(`http://localhost:3000/users/createuser`, options);
             const data = await response.json()
 
         } catch (err) {

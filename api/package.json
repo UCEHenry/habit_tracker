@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --legacy-watch index.js",
     "seedDev": "node dbConfig/seedDev.js",
-    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose",
+    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose  --coverage",
     "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
     "coverage": "jest --testPathPattern=/unit/ --coverage"
   },
@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongodb": "^3.6.3"

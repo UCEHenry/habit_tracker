@@ -16,7 +16,6 @@ describe('user endpoints', () => {
 
     afterAll(async () => {
         console.log('Gracefully stopping test server')
-
         await api.close()
     })
 
@@ -28,7 +27,7 @@ describe('user endpoints', () => {
     // Should get a user.
     it('Should get user.', async () => {
         const res = await request(api).get('/users/phil')
-        // console.log("get user", res.body)
+        //console.log("get user", res.body)
         expect(res.statusCode).toEqual(200)
     })
 

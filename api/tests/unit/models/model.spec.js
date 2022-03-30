@@ -19,9 +19,27 @@ describe('db test', () => {
     })
     // test server running
 
-    // should returning all user habits
+    // should returning all users
 
-    // should create a new habit
+    // should create a new user
+    it('should create a new user', async () => {
+        const user = db.collection('user')
+        const mockUser = { _id: 'some-user-id', username: 'John', password: "abc" };
+        await user.insertOne(mockUser);
+        const insertedUser = await user.findOne({ username: 'John' });
+        expect(insertedUser).toEqual(mockUser);
+    })
+    // Should have password hashed and salted.
+    it('Should have password hashed and salted', async () => {
+        const user = db.collection('user')
+        const mockUser = { _id: 'some-user-id', username: 'John', password: "abc" };
+        await user.insertOne(mockUser);
+        const insertedUser = await user.findOne({ username: 'John' });
+        expect(insertedUser).toEqual(mockUser);
+    })
+    // Should not create user that already exists
+
+    // Should delelete user
     it('should create a new habit for a user with no habits', async () => {
         const user = db.collection('user')
         const mockHabit = {habitName:'water intake', schedule:'daily',completed:'true', dates:[], currentStreak:0, longestStreak:7};
@@ -31,8 +49,7 @@ describe('db test', () => {
         await user.update({username:'John'}, {$addToSet:{habit: mockHabit}})
         const insertedUser = await user.findOne({ username: 'John' });
         expect(insertedUser).toEqual(mockHabitandUser);
-    })
-
+    })    
     it('should create a new habit for a user with habits', async () => {
         const user = db.collection('user')
         const mockHabit = {habitName:'water intake', schedule:'daily',completed:'true', dates:[], currentStreak:0, longestStreak:7};
@@ -53,8 +70,6 @@ describe('db test', () => {
     //     const insertedUser = await user.findOne({ username: 'John' });
     //     expect(insertedUser).toEqual(mockUser);
     // })
-    // Should not create user that already exists
-
-    // Should delelete user
+    // Should not create user that already exists    // Should delelete user})
 
 })

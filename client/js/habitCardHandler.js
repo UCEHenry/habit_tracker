@@ -20,3 +20,34 @@ window.onload = event => {
     })
     document.querySelector('#habitsSection').innerHTML = filled;
 }
+
+const hform = document.querySelector('.createHabitForm')
+hform.addEventListener('submit', createHabit);
+
+async function createHabit(e) {
+    e.preventDefault();
+
+    const habitData = {
+        habitName: e.target.habitName.value,
+        frequency: e.target.habitFrequency.value
+    }
+
+    console.log(habitData);
+
+    try {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(habitData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        } 
+
+        const response = await fetch(url, options);
+        let data = await response.json();
+
+    } catch(err) {
+        alert(`Unable to create Habit: ${err}`);
+        console.log(`Failed to create Habit: ${err}`);
+    }
+}

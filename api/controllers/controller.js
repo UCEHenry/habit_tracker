@@ -1,4 +1,5 @@
 const User = require('../models/model')
+const bcrypt = require('bcryptjs');
 
 
 async function getAll(req, res) {
@@ -13,8 +14,10 @@ async function getAll(req, res) {
 
 async function createNewUser(req, res) {
     try{
+        const salt = await bcrypt.genSalt();
+        const hashed = await bcrypt.hash(req.body.password, salt)
         const username = req.body.username
-        const password = req.body.password
+        const password = hashed
         const user = await User.createUser(username, password)
         res.status(201).json(user)
     } catch (err) {
@@ -25,7 +28,13 @@ async function createNewUser(req, res) {
 async function getUser(req, res) {
     try{
         const user = await User.findByUsername(req.params.username)
-        res.status(200).json(user)
+        if(!user){ throw new Error('No user with this username') }
+        const authed = bcrypt.compare(req.body.password, user.password)
+        if (!!authed){
+            res.status(200).json({user})
+        } else {
+            throw new Error('User could not be authenticated')  
+        }
     } catch (err) {
         res.status(404).json({err})
     }

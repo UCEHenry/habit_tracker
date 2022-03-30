@@ -61,7 +61,7 @@ class User {
             }
         })
     }
-    RemoveAUser() {
+    removeUser() {
         return new Promise(async (resolve, reject) => {
             try {
                 const db = await init();
@@ -74,7 +74,7 @@ class User {
     }
 
     static createHabit(username, habit) {
-        //console.log("creating habit ", habit)
+        console.log("creating habit ", habit)
         return new Promise(async (resolve, reject) => {
             try {
      
@@ -102,13 +102,14 @@ class User {
         })
     }
 
-    static removeHabit(username, habitname) {
-        //console.log("in models", username, habitname)
+    removeHabit(username, habitname) {
         return new Promise(async(resolve, reject) => {
             try {
                 const db = await init();
-                await db.collection('users').update(
-                    {'username': username},{$pull: {habit:{habitName: habitname}}})
+                await db.collection('users').db.example.update(
+                    {'username': {'$equals': username}},
+                    { $unset: {'habit': {habitname: {'$equals': habitname}}}}
+                  )
                 resolve(`${habitname} deleted`)
             } catch (err) {
                 reject(`${habitname} could not be deleted`)
@@ -117,7 +118,6 @@ class User {
     }
 
 }
-
 
 
 module.exports = User

@@ -9,11 +9,12 @@ class User {
     }
 
     static get all(){
-        
+
     }
 
     static findByUsername(username) {
         return new Promise(async (resolve, reject) => {
+            console.log(username)
             try{
                 const db = await init();
                 let userData = await db.collection('users').find({ username: username }).toArray()
@@ -54,7 +55,6 @@ class User {
         })
     }
 }
-
 
 
 module.exports = User

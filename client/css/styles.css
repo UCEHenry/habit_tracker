@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+
+*{
+  font-family: 'Comfortaa', cursive;
+}
+
+body {
+  animation: fadeIn 3s;
+  -webkit-animation: fadeIn 3s;
+  -moz-animation: fadeIn 3s;
+  -o-animation: fadeIn 3s;
+  -ms-animation: fadeIn 3s;
+}
+
+header {
+  background-color: rgb(34, 34, 34);
+}
+
+header li {
+  font-size: 22px;
+}
+
+.infoBoard {
+  background-color: rgb(63, 63, 63);
+  height: auto;
+  color: white;
+  padding: 5em;
+  text-align: center; 
+}
+
+#banner {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: auto;
+  width: auto;
+  font-family: 'Comfortaa', cursive;
+}
+
+#title {
+  display: flex;
+  flex-direction: column;
+  margin: 4em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#signUpBtn {
+  width: 180px;
+  height: 40px;
+  margin: 4px 2px;
+  border-radius: 12px;
+  font-size: small;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(63, 63, 63);
+}
+
+#signUpBtn:hover {
+  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: rgb(34, 34, 34);
+}
+
+#banner img {
+  height: calc(100vh - 72px);
+  width: 100%;
+  object-fit: cover;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}

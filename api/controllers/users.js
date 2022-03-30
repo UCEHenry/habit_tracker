@@ -1,7 +1,7 @@
 const User = require('../models/users')
 
 async function send(req, res) {
-    console.log("This is a test",req.body)
+    // console.log("This is a test",req.body)
     try{
         const username = req.body.username
         const password = req.body.password

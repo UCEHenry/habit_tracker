@@ -90,6 +90,22 @@ describe('habit endpoints', () => {
             expect(userRes.body.habit.length).toEqual(1);
         })
 
+        it('Should update a selected habit from a user', async () => {
+            const res = await request(api)
+                .patch('/users/phil')
+                .send({
+                    username:'phil',
+                    habitName:'sleep'
+                })
+            expect(res.statusCode).toEqual(204);
+    
+    
+    
+    
+    
+        })
+
+
 
 })
 

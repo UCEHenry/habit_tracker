@@ -73,13 +73,12 @@ class User {
     }
 
     static createHabit(username, habit) {
-        //console.log("creating habit ", habit)
+        console.log("creating habit ", username, habit)
         return new Promise(async (resolve, reject) => {
             try {
      
                 const db = await init();
-
-                let habitData = await db.collection('users').updateOne({"username":username, "habit.habitName":{$ne: habit.habitName}}, {$addToSet:{"habit":habit}}, false,true)
+                let habitData = await db.collection('users').updateOne({username:username}, {$addToSet:{habit:habit}})
                 let updatedhabitData = await db.collection('users').find({ username: username }).toArray()
                 updatedhabitData.map(h => {new User({...h}) 
                 resolve(h)})
@@ -89,9 +88,20 @@ class User {
         });
     }
 
-    updateHabit(username, habitName) {
+    static updateAHabit(username, habitName) {
         return new Promise(async (resolve, reject) => {
             try{
+                console.log('in update habit', username, habitName)
+                let status = true;
+                let counter;
+                counter++;
+                const db = await init();
+                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})
+                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.currentStreak': counter}})
+                status = false;
+                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})
+                
+
                 
 
                 resolve(`Updated the habit: ${habitName} for ${username}`)

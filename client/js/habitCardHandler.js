@@ -7,15 +7,16 @@ window.onload = event => {
             { habitName: "Sleep" }
         ]
     };
-    let counter = 0
-    let dataWithId = {habitList:[]}
-    for (item of data['habitList']) {
-        item['id'] = counter
-        counter ++
-        dataWithId['habitList'].push(item)
+
+    let id = 1;
+    for (const element of data.habitList) {
+        element.id = id
+        id++
     }
+
+
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
-    let filled = template(dataWithId, {
+    let filled = template(data, {
         noEscape: true
     })
     document.querySelector('#habitsSection').innerHTML = filled;
@@ -43,7 +44,7 @@ async function createHabit(e) {
             }
         } 
 
-        const response = await fetch(url, options);
+        const response = await fetch('./data.json', options);
         let data = await response.json();
 
     } catch(err) {

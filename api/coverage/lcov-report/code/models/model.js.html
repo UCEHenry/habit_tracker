@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.28% </span>
+                <span class="strong">64.7% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>52/70</span>
+                <span class='fraction'>44/68</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.68% </span>
+                <span class="strong">63.15% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>14/19</span>
+                <span class='fraction'>12/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">65.15% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>51/68</span>
+                <span class='fraction'>43/66</span>
             </div>
         
             
@@ -195,18 +195,16 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -224,15 +222,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -260,11 +258,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,8 +286,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -366,7 +362,7 @@ class User {
                 let user = new User({...userData[0], username: userData[0].username, password: userData[0].password})
                 resolve(user)
             } catch (err) {
-                reject(`User: ${username} not found.`)
+<span class="cstat-no" title="statement not covered" >                reject(`User: ${username} not found.`)</span>
             }
         })
     }
@@ -393,12 +389,12 @@ class User {
             }
         })
     }
-    RemoveAUser() {
-        return new Promise(async (resolve, reject) =&gt; {
-            try {
-                const db = await init();
-                await db.collection('users').deleteOne({ username: this.username })
-                resolve(`${this.username} deleted`)
+<span class="fstat-no" title="function not covered" >    Re</span>moveAUser() {
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >as</span>ync (resolve, reject) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            try {</span>
+                const db = <span class="cstat-no" title="statement not covered" >await init();</span>
+<span class="cstat-no" title="statement not covered" >                await db.collection('users').deleteOne({ username: this.username })</span>
+<span class="cstat-no" title="statement not covered" >                resolve(`${this.username} deleted`)</span>
             } catch (err) {
 <span class="cstat-no" title="statement not covered" >                reject(`${this.username} could not be deleted`)</span>
             }
@@ -426,11 +422,9 @@ class User {
             try{
                 console.log('in update habit', username, habitName)
                 let status = true;
-                let counter = 0;
-                counter++;
                 const db = await init();
                 await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})
-                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.currentStreak': counter}})
+                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$inc:{'habit.$.currentStreak': 1}})
                 status = false;
                 await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})
                 
@@ -472,7 +466,7 @@ module.exports = User
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Mar 30 2022 16:53:20 GMT+0000 (Coordinated Universal Time)
+                at Wed Mar 30 2022 17:21:07 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

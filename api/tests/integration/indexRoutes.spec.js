@@ -100,7 +100,7 @@ describe('habit endpoints', () => {
             expect(res.statusCode).toEqual(204);
             const userRes = await request(api).get('/users/phil');
             expect(userRes.statusCode).toEqual(200);
-            console.log("in the update test", userRes.body);
+            console.log("in the update test", userRes.body.habit[0].currentStreak);
     
     
     
@@ -158,14 +158,14 @@ describe('user endpoints', () => {
 
    
 
-    it('Should delete selected user.', async () => {
-        const res = await request(api)
-            .delete('/users/phil')
-        expect(res.statusCode).toEqual(204);
-        const userRes = await request(api).get('/users/phil');
-        expect(userRes.statusCode).toEqual(404);
-        expect(userRes.body).toHaveProperty('err');
-    })
+    // it('Should delete selected user.', async () => {
+    //     const res = await request(api)
+    //         .delete('/users/phil')
+    //     expect(res.statusCode).toEqual(204);
+    //     const userRes = await request(api).get('/users/phil');
+    //     expect(userRes.statusCode).toEqual(404);
+    //     expect(userRes.body).toHaveProperty('err');
+    // })
 
 
 

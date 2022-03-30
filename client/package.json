@@ -7,9 +7,18 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev": "concurrently \"watchify ./js/app.js -o bundle.js\" \"py -m http.server\""
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "express": "^4.17.3",
+    "http-server": "^14.1.0",
+    "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3",
+    "watchify": "^4.0.0"
+  }
 }

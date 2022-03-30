@@ -79,7 +79,18 @@ describe('habit endpoints', () => {
 
         })
 
-        
+        it('Should delete selected habit from a user.', async () => {
+            const res = await request(api)
+                .delete('/users/phil/sleep')
+            expect(res.statusCode).toEqual(204);
+    
+            const userRes = await request(api).get('/users/phil');
+            expect(userRes.statusCode).toEqual(200);
+            //console.log("userRes output", userRes.body.habit);
+            expect(userRes.body.habit.length).toEqual(1);
+        })
+
+
 })
 
 describe('user endpoints', () => {

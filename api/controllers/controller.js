@@ -76,7 +76,7 @@ async function removeHabit(req, res) {
         res.status(201).json('habit delteted')
     } catch (err) {
         res.status(422).json({err})
-        console.log(req.body.habitname);
+        console.log(req.body);
     }
 
 }

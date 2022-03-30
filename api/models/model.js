@@ -61,7 +61,7 @@ class User {
             }
         })
     }
-    removeUser() {
+    RemoveAUser() {
         return new Promise(async (resolve, reject) => {
             try {
                 const db = await init();
@@ -74,7 +74,7 @@ class User {
     }
 
     static createHabit(username, habit) {
-        console.log("creating habit ", habit)
+        //console.log("creating habit ", habit)
         return new Promise(async (resolve, reject) => {
             try {
      
@@ -93,7 +93,7 @@ class User {
     updateHabit(username, habitName) {
         return new Promise(async (resolve, reject) => {
             try{
-                let updatedHabitData = await db.collection('users').updateOne({username:username, "habit.habitName":habitName}, {$set:{"habit.$.habitName": habitName}})
+                
 
                 resolve(`Updated the habit: ${habitName} for ${username}`)
             } catch (err) {
@@ -102,14 +102,13 @@ class User {
         })
     }
 
-    removeHabit(username, habitname) {
+    static removeHabit(username, habitname) {
+        //console.log("in models", username, habitname)
         return new Promise(async(resolve, reject) => {
             try {
                 const db = await init();
-                await db.collection('users').db.example.update(
-                    {'username': {'$equals': username}},
-                    { $unset: {'habit': {habitname: {'$equals': habitname}}}}
-                  )
+                await db.collection('users').update(
+                    {'username': username},{$pull: {habit:{habitName: habitname}}})
                 resolve(`${habitname} deleted`)
             } catch (err) {
                 reject(`${habitname} could not be deleted`)
@@ -119,5 +118,8 @@ class User {
 
 }
 
+
+//db.users.updateOne({username: 'phil', habit: {$elemMatch: {habitName:'sleep'}}},{$set:{'habit.$.completed': true}})
+//db.users.updateOne({username: 'phil', habit: {$elemMatch: {habitName:'sleep'}}}, {$push: {'habit.$.dates': '1/1/2022'}})
 
 module.exports = User

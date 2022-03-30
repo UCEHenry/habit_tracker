@@ -14,39 +14,22 @@
 //         api = app.listen(5000, () => console.log('Test server running on port 5000'))
 //     });
 
-<<<<<<< HEAD
-    afterAll(async () => {
-        console.log('Gracefully stopping test server')
-
-        await api.close()
-    })
-=======
 //     afterAll(async () => {
 //         console.log('Gracefully stopping test server')
 //         await api.close()
 //     })
->>>>>>> 9db04e7786b2eb2822aa9d7a99509e60a9ba2b70
 
 //     it('Should check server up', async () => {
 //         const res = await request(api).get('/')
 //         expect(res.statusCode).toEqual(200)
 //     })
     
-<<<<<<< HEAD
-    // Should get a user.
-    it('Should get user.', async () => {
-        const res = await request(api).get('/users/phil')
-        // console.log("get user", res.body)
-        expect(res.statusCode).toEqual(200)
-    })
-=======
 //     // Should get a user.
 //     it('Should get user.', async () => {
 //         const res = await request(api).get('/users/phil')
 //         console.log("get user", res.body)
 //         expect(res.statusCode).toEqual(200)
 //     })
->>>>>>> 9db04e7786b2eb2822aa9d7a99509e60a9ba2b70
 
 //     // Should create new user.
 //     it('Should post new user.', async () => {

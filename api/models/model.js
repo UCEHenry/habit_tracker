@@ -18,7 +18,7 @@ class User {
                 const users = usersData.map(d => new User({ ...d, id: d._id }))
                 resolve(users);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
                 reject("Error retrieving users")
             }
         })
@@ -26,7 +26,7 @@ class User {
 
     static findByUsername(username) {
         return new Promise(async (resolve, reject) => {
-            console.log(username)
+            // console.log(username)
             try{
                 const db = await init();
                 let userData = await db.collection('users').find({ username: username }).toArray()
@@ -44,6 +44,7 @@ class User {
                 const db = await init();
                 let userData = await db.collection('users').insertOne({ username: username, password: password })
                 let newUser = new User(userData.ops[0]);
+                // console.log(userData)
                 resolve(newUser);
             } catch (err) {
                 reject(`Error creating user: ${username}`);
@@ -73,18 +74,18 @@ class User {
     }
 
     static createHabit(username, habit) {
+        console.log("creating habit ", habit)
         return new Promise(async (resolve, reject) => {
             try {
+     
                 const db = await init();
-                let habitData = await db.collection('users').update({ username: username }, { $addToSet: { habit: habit } })
 
+                let habitData = await db.collection('users').updateOne({"username":username, "habit.habitName":{$ne: habit.habitName}}, {$addToSet:{"habit":habit}}, false,true)
                 let updatedhabitData = await db.collection('users').find({ username: username }).toArray()
-                updatedhabitData.map(h => {
-                    new Habit({ ...h })
-                    resolve(h)
-                })
+                updatedhabitData.map(h => {new User({...h}) 
+                resolve(h)})
             } catch (err) {
-                reject(`Error creating habit: ${username}`);
+                reject(`Error creating habit: ${habit}. Error ${err}`);
             }
         });
     }

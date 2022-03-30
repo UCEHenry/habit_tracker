@@ -2,7 +2,7 @@ const User = require('../models/model')
 
 
 async function getAll(req, res) {
-    console.log(req)
+
     try{
         const userData = await User.all
         res.json(userData)
@@ -54,4 +54,4 @@ async function createHabit(req, res) {
 }
 
 
-module.exports = {getAll, getUser, createNewUser, updateUser}
+module.exports = {getAll, getUser, createNewUser, updateUser, createHabit}

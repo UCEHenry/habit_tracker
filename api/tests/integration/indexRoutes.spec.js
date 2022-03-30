@@ -135,4 +135,16 @@ describe('user endpoints', () => {
         const userRes = await request(api).get('/users/carlton')
         expect(userRes.statusCode).toEqual(200);
     })
+
+    it('Should delete selected user.', async () => {
+        const res = await request(api)
+            .delete('/users/phil')
+        expect(res.statusCode).toEqual(204);
+        const userRes = await request(api).get('/users/phil');
+        expect(userRes.statusCode).toEqual(404);
+        expect(userRes.body).toHaveProperty('err');
+    })
+
+
+
 })

@@ -44,9 +44,12 @@ async function updateUser(req, res) {
 // TODO Testing and controllers
 async function removeUser(req, res) {
     try{
-        res.status(201).json(user)
+        const user = await User.findByUsername(req.params.username)
+        //console.log("in controller/controllers", user);
+        await user.RemoveAUser();
+        res.status(204).json('User deleted')
     } catch (err) {
-        res.status(422).json({err})
+        res.status(500).json({err})
     }
 }
 
@@ -70,15 +73,15 @@ async function updateHabit(req, res) {
 }
 
 // TODO Testing and controllers
-async function removeHabit(req, res) {
+async function remove(req, res) {
     try{
-        await User.removeHabit(req.body.username, req.body.habitname)
-        res.status(201).json('habit delteted')
+        await User.removeHabit(req.params.username, req.params.habitname)
+        res.status(204).json('habit delteted')
     } catch (err) {
         res.status(422).json({err})
-        console.log(req.body);
+        console.log(req.params);
     }
 
 }
 
-module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, removeHabit}
+module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser}

@@ -1,9 +1,9 @@
 const hform = document.querySelector('.createHabitForm')
 hform.addEventListener('submit', createHabit);
 
-window.onload = async event => {
+window.onload = async (event) => {
     let data = await getAllUserHabits()
-
+    console.log(data)
     let id = 1;
     for (const element of data) {
         element.id = id

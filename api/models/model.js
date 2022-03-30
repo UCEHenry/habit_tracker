@@ -50,7 +50,7 @@ class User {
             }
         });
     }
-    updateUser(oldUsername, newUsername) {
+    static updateAUser(oldUsername, newUsername) {
         return new Promise(async (resolve, reject) => {
             try{
                 let updatedUserData = await db.collection('users').updateOne({usename:oldUsername}, {$set:{username:newUsername}})

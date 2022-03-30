@@ -6,9 +6,10 @@ async function getAll(req, res) {
 
     try{
         const userData = await User.all
-        res.json(userData)
+        res.status(200).json(userData)
     } catch (err) {
-        res.send("Not data found: ", err)
+        res.status(404).json({err})
+        
     }
 }
 
@@ -67,7 +68,7 @@ async function updateUser(req, res) {
     try{
         const oldUsername = req.params.oldUsername
         const newUsername = req.params.newUsername
-        const user = await User.updateUser(oldUsername, newUsername)
+        const user = await User.updateAUser(oldUsername, newUsername)
         res.status(200).json(user)
     } catch (err) {
         res.status(422).json({err})
@@ -102,7 +103,7 @@ async function updateHabit(req, res) {
         const habitname = req.body.habitName
         console.log('in controller in updateHabit', username, habitname)
         await User.updateAHabit(username, habitname)
-        res.status(204).json('updated habit')
+        res.status(201).json('updated habit')
     } catch (err) {
         res.status(422).json({err})
     }
@@ -111,11 +112,11 @@ async function updateHabit(req, res) {
 // TODO Testing and controllers
 async function remove(req, res) {
     try{
+        console.log('in remove habit in controllers', req.params.username, req.params.habitname)
         await User.removeHabit(req.params.username, req.params.habitname)
-        res.status(204).json('habit delteted')
+        res.status(204).json('habit deleted')
     } catch (err) {
         res.status(422).json({err})
-        console.log(req.params);
     }
 
 }

@@ -78,6 +78,8 @@ describe('habit endpoints', () => {
             expect(userRes.statusCode).toEqual(200);
 
         })
+
+        
 })
 
 describe('user endpoints', () => {

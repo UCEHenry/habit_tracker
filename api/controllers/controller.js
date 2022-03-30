@@ -72,10 +72,13 @@ async function updateHabit(req, res) {
 // TODO Testing and controllers
 async function removeHabit(req, res) {
     try{
-        res.status(201).json(user)
+        await User.removeHabit(req.body.username, req.body.habitname)
+        res.status(201).json('habit delteted')
     } catch (err) {
         res.status(422).json({err})
+        console.log(req.body.habitname);
     }
+
 }
 
-module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit}
+module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, removeHabit}

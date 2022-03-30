@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon --legacy-watch index.js",
     "seedDev": "node dbConfig/seedDev.js",
-    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose",
+    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose  --coverage",
     "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
     "coverage": "jest --testPathPattern=/unit/ --coverage"
   },

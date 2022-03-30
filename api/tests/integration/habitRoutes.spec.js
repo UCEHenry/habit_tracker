@@ -1,13 +1,83 @@
-// test server running
+// const request = require('supertest');
+// const app = require('../../server.js');
+// const resetTestDB = require('./config.js')
 
-// should returning all habits
 
-// should create a new habit
+// describe('habit endpoints', () => {
+//     let api;
 
-// Should not create habit that already exists
+//     beforeEach(async () => {
+//         await resetTestDB.resetTestDB()
+//     });
 
-// Should update habit name
+//     beforeAll(async () => {
+//         api = app.listen(5000, () => console.log('Test server running on port 5000'))
+//     });
 
-// Should update habit frequency
+//     afterAll(async () => {
+//         console.log('Gracefully stopping test server')
+//         await api.close()
+//     })
 
-// Should delete habit
+//     it('Should check server up', async () => {
+//         const res = await request(api).get('/')
+//         expect(res.statusCode).toEqual(200)
+//     })
+    
+//     // Should get a habit.
+//     it('Should get habit.', async () => {
+//         const res = await request(api).get('/habits/phil')
+//         //console.log("get habit", res.body)
+//         expect(res.statusCode).toEqual(200)
+//     })
+
+//     // // Should create new habit.
+//     it('Should post new habit to a user with no habits.', async () => {
+//         const res = await request(api)
+//         .post('/habits/carlton')
+//         .send({
+//             username: "carlton",
+//             habit:{habitName:"wondering",schedule:'weekly',completed:'true', dates:[], currentStreak:1, longestStreak:3}
+//         })
+//         //console.log("post habit", res.body)
+//         expect(res.statusCode).toEqual(201)
+//         expect(res.body).toHaveProperty("habit")
+
+//         const userRes = await request(api).get('/habits/carlton')
+//         //console.log("post habit", userRes.body)
+//         expect(userRes.statusCode).toEqual(200);
+//         // expect(userRes.body.length).toEqual(1);
+//     })
+
+
+//     it('Should post new habit to a user with existing habits.', async () => {
+//         const res = await request(api)
+//         .post('/habits/phil')
+//         .send({
+//             username: "phil",
+//             habit:{habitName:"flying",schedule:'monthly',completed:'true', dates:[], currentStreak:0, longestStreak:1}
+//         })
+//         //console.log("post habit", res.body)
+//         expect(res.statusCode).toEqual(201)
+//         expect(res.body).toHaveProperty("habit")
+
+//         const userRes = await request(api).get('/habits/phil')
+//         //console.log("post habit", userRes.body)
+//         expect(userRes.statusCode).toEqual(200);
+//         // expect(userRes.body.length).toEqual(1);
+//     })
+
+//     // // Should delete selected user.
+//     // it('Should delete selected user.', async () => {
+//     //     const res = await request(api)
+//     //         .delete('/phil/sleep')
+//     //     expect(res.statusCode).toEqual(204);
+
+//     //     const userRes = await request(api).get('/phil/sleep');
+//     //     expect(userRes.statusCode).toEqual(404);
+//     //     expect(userRes.body).toHaveProperty('err');
+//     // })
+
+// })
+
+

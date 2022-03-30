@@ -30,7 +30,7 @@ class User {
             try{
                 const db = await init();
                 let userData = await db.collection('users').find({ username: username }).toArray()
-                let user = new User({...userData[0], username: userData[0].username});
+                let user = new User({...userData[0], username: userData[0].username, password: userData[0].password})
                 resolve(user)
             } catch (err) {
                 reject(`User: ${username} not found.`)
@@ -44,7 +44,6 @@ class User {
                 const db = await init();
                 let userData = await db.collection('users').insertOne({ username: username, password: password })
                 let newUser = new User(userData.ops[0]);
-                // console.log(userData)
                 resolve(newUser);
             } catch (err) {
                 reject(`Error creating user: ${username}`);

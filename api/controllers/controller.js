@@ -25,16 +25,39 @@ async function createNewUser(req, res) {
     }
 }
 
-async function getUser(req, res) {
-    try{
-        const user = await User.findByUsername(req.params.username)
-        if(!user){ throw new Error('No user with this username') }
-        const authed = bcrypt.compare(req.body.password, user.password)
+async function authLogin(req, res){
+    try {
+        const user = await User.findByUsername(req.body.username)
+        console.log(user);
+        if (!user) { 
+            throw new Error('No user with this username') 
+        }
+        const authed = await bcrypt.compare(req.body.password, user.password)
         if (!!authed){
-            res.status(200).json({user})
+            const payload = { username: user.username }
+            const sendToken = (err, token) => {
+                if(err){ 
+                    throw new Error('Error in token generation') 
+                }
+                res.status(200).json({
+                    success: true,
+                    token: "Bearer " + token,
+                });
+            }
+            // should be added process.env.SECRET
+            jwt.sign(payload, "secret", { expiresIn: 3600 }, sendToken);
         } else {
             throw new Error('User could not be authenticated')  
         }
+    } catch (err) {
+        res.status(401).json({ err });
+    }
+}
+
+async function getUser(req, res) {
+    try{
+        const user = await User.findByUsername(req.params.username)
+        res.status(200).json(user)
     } catch (err) {
         res.status(404).json({err})
     }
@@ -93,4 +116,4 @@ async function remove(req, res) {
 
 }
 
-module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser}
+module.exports = {getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser, authLogin}

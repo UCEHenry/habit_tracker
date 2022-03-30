@@ -115,14 +115,7 @@ describe('user endpoints', () => {
         expect(res.statusCode).toEqual(200)
     })
 
-    it('Should get user.', async () => {
-        const res = await request(api).get('/users/phil')
-        expect(res.statusCode).toEqual(200)
-        expect(res.body.username).toEqual('phil')
-        expect(res.body.habit[0].habitName).toEqual('sleep')
-    })
-
-    it('Should post new user.', async () => {
+     it('Should post new user.', async () => {
         
         const res = await request(api)
             .post('/users/createuser')
@@ -132,9 +125,19 @@ describe('user endpoints', () => {
             })
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty("username")
+        console.log(res.body)
         const userRes = await request(api).get('/users/carlton')
         expect(userRes.statusCode).toEqual(200);
     })
+    
+    it('Should get user.', async () => {
+        const res = await request(api).get('/users/phil')
+        expect(res.statusCode).toEqual(200)
+        expect(res.body.username).toEqual('phil')
+        expect(res.body.habit[0].habitName).toEqual('sleep')
+    })
+
+   
 
     it('Should delete selected user.', async () => {
         const res = await request(api)

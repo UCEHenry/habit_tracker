@@ -93,7 +93,7 @@ class User {
             try{
                 console.log('in update habit', username, habitName)
                 let status = true;
-                let counter;
+                let counter = 0;
                 counter++;
                 const db = await init();
                 await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})

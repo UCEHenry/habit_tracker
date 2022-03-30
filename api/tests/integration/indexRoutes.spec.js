@@ -98,6 +98,9 @@ describe('habit endpoints', () => {
                     habitName:'sleep'
                 })
             expect(res.statusCode).toEqual(204);
+            const userRes = await request(api).get('/users/phil');
+            expect(userRes.statusCode).toEqual(200);
+            console.log("in the update test", userRes.body);
     
     
     

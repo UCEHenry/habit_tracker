@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648680442637" clover="3.2.0">
-  <project timestamp="1648680442638" name="All files">
-    <metrics statements="181" coveredstatements="125" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="24" elements="226" coveredelements="149" complexity="0" loc="181" ncloc="181" packages="7" files="7" classes="7"/>
+<coverage generated="1648681045381" clover="3.2.0">
+  <project timestamp="1648681045383" name="All files">
+    <metrics statements="182" coveredstatements="126" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="24" elements="227" coveredelements="150" complexity="0" loc="182" ncloc="182" packages="7" files="7" classes="7"/>
     <package name="code">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="server.js" path="/code/server.js">
@@ -18,11 +18,12 @@
       </file>
     </package>
     <package name="code.controllers">
-      <metrics statements="63" coveredstatements="40" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
+      <metrics statements="64" coveredstatements="41" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
       <file name="controller.js" path="/code/controllers/controller.js">
-        <metrics statements="63" coveredstatements="40" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
+        <metrics statements="64" coveredstatements="41" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
@@ -83,7 +84,7 @@
         <line num="116" count="2" type="stmt"/>
         <line num="117" count="2" type="stmt"/>
         <line num="119" count="0" type="stmt"/>
-        <line num="124" count="2" type="stmt"/>
+        <line num="152" count="2" type="stmt"/>
       </file>
     </package>
     <package name="code.dbConfig">
@@ -205,7 +206,7 @@
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
       </file>
     </package>
     <package name="code.tests.integration">

@@ -1,19 +1,14 @@
-window.onload = event => {
-    let data = {
+const hform = document.querySelector('.createHabitForm')
+hform.addEventListener('submit', createHabit);
 
-        habitList: [
-            { habitName: "Exercise", longestStreak: "1", currentStreak: "1", frequency: "daily" },
-            { habitName: "Drink Water" },
-            { habitName: "Sleep" }
-        ]
-    };
+window.onload = async event => {
+    let data = await getAllUserHabits()
 
     let id = 1;
-    for (const element of data.habitList) {
+    for (const element of data) {
         element.id = id
         id++
     }
-    getAllHabits;
 
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(data, {
@@ -22,8 +17,6 @@ window.onload = event => {
     document.querySelector('#habitsSection').innerHTML = filled;
 }
 
-const hform = document.querySelector('.createHabitForm')
-hform.addEventListener('submit', createHabit);
 
 async function createHabit(e) {
     e.preventDefault();
@@ -59,7 +52,7 @@ async function createHabit(e) {
     }
 }
 
-async function getAllHabits(){
+async function getAllUserHabits(){
     try {
         const options = { 
             headers: new Headers({
@@ -70,13 +63,14 @@ async function getAllHabits(){
         const username = localStorage.getItem('username');
         const response = await fetch(`http://localhost:3000/users/${username}`, options);
         const data = await response.json();
+        let listOfHabit = data.user.habit;
 
         if(data.err){
             console.warn(data.err);
-            logout();
+            window.location.href = "/";
         }
 
-        return data;
+        return listOfHabit;
 
     } catch (err) {
         console.warn(err);

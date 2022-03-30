@@ -103,7 +103,7 @@
         <section id="habitsSection" class="container">
             <div id="myChart"></div>
             <script type="text/x-handlebars-template" id="template">
-            {{#each habitList}}
+            {{#each .}}
             <div class="row g-3 my-5">
                 <div class="col-12">
                     <div class="card shadow-sm">
@@ -122,9 +122,10 @@
                     </div>
                     <div class="collapse" id="collapseExample_{{this.id}}">
                         <div class="card card-body">
-                            <p>longest streak {{this.longestStreak}}
-                                current streak {{this.currentStreak}}
-                                Schedule{{this.Schedule}}
+                            <p>
+                                <!-- longest streak {{this.longestStreak}}
+                                current streak {{this.currentStreak}} -->
+                                Schedule{{this.schedule}}
                             </p>
                         </div>
                     </div>

@@ -31,7 +31,7 @@ async function requestLogin(e){
             login(data);
         }
     } catch (err) {
-        alert(`Unable to Log In: ${err}`);
+        alert(`Unable to Log In: Incorrect Details`);
         console.log(`Failed to get Log In, reason: ${err}`);    
     }
 }
@@ -49,4 +49,4 @@ function currentUser(){
     return username;
 }
 
-// module.exports = { userLogIn }
+module.exports = { currentUser }

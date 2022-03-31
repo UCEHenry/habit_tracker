@@ -54,6 +54,30 @@ function deleteButtonEventHandler(data) {
     }
 }
 
+async function getAllUserHabits() {
+    try {
+
+        const options = {
+            headers: new Headers({
+                'Authorization': localStorage.getItem('token')
+            })
+        }
+        const username = localStorage.getItem('username');
+        const response = await fetch(`http://localhost:3000/users/${username}`, options);
+        const data = await response.json();
+        let listOfHabits = data.habit;
+        if (data.err) {
+            console.warn(data.err);
+            window.location.href = "/";
+        }
+        
+        return listOfHabits;
+        
+    } catch (err) {
+        console.warn(err);
+    }
+    
+}
 
 async function createHabit(e) {
     e.preventDefault();
@@ -100,31 +124,6 @@ async function createHabit(e) {
 }
 
 
-
-async function getAllUserHabits() {
-    try {
-
-        const options = {
-            headers: new Headers({
-                'Authorization': localStorage.getItem('token')
-            })
-        }
-        const username = localStorage.getItem('username');
-        const response = await fetch(`http://localhost:3000/users/${username}`, options);
-        const data = await response.json();
-        let listOfHabits = data.habit;
-        if (data.err) {
-            console.warn(data.err);
-            window.location.href = "/";
-        }
-        
-        return listOfHabits;
-        
-    } catch (err) {
-        console.warn(err);
-    }
-    
-}
 
 async function deleteHabit(habitName){
 

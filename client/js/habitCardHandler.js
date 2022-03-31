@@ -143,9 +143,6 @@ function completion(event) {
             habit: habitData
         }
         
-        
-
-
         const options = {
             method: "POST",
             headers: new Headers({

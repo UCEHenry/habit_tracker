@@ -13,6 +13,8 @@ services:
         target: /code
     command: [ "http-server" ]
   api:
+    build:
+      dockerfile: Dockerfile
     container_name: dev_api
     ports: 
       - 3000:3000
@@ -21,6 +23,8 @@ services:
       - DB_CONNECTION=mongodb+srv://hihoclusterandaway.vky4q.mongodb.net/hihoclusterandaway
     depends_on:
       - db
+     env_file:
+      - .env
     command: bash -c "npm install && npm run start"
   db:
     container_name: dev_db

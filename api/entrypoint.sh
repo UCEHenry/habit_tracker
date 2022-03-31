@@ -1,4 +1,3 @@
-#!/bin/bash
 if [ -d "./node_modules" ];
   then
     # Control will enter here if $DIRECTORY exists.

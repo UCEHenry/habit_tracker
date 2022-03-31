@@ -1,0 +1,13 @@
+version: '3'
+services:
+  api:
+  container_name: prod_api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    working_dir: /code
+

@@ -6,6 +6,10 @@
 }
 
 body {
+
+}
+
+.fade {
   animation: fadeIn 3s;
   -webkit-animation: fadeIn 3s;
   -moz-animation: fadeIn 3s;

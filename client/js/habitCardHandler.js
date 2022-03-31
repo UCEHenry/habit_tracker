@@ -4,6 +4,7 @@ hform.addEventListener('submit', createHabit);
 window.onload = async (event) => {
     let data = await getAllUserHabits()
     console.log(data)
+    localStorage.setItem('habitData', JSON.stringify(data))
     let id = 1;
     for (const element of data) {
         element.id = id
@@ -15,6 +16,15 @@ window.onload = async (event) => {
         noEscape: true
     })
     document.querySelector('#habitsSection').innerHTML = filled;
+
+
+    const completionButtons = document.querySelectorAll('[id^="completionButton_"]')
+    for (i =0; i< completionButtons.length; i++) {
+        completionButtons[i].addEventListener('click', (e) => {
+            console.log('click', i)
+        })
+    }
+    
 }
 
 
@@ -36,7 +46,7 @@ async function createHabit(e) {
         habit: habit
     }
 
-    console.log(habitData);
+    // console.log(habitData);
 
     try {
         const options = {
@@ -67,24 +77,19 @@ async function getAllUserHabits() {
         const username = localStorage.getItem('username');
         const response = await fetch(`http://localhost:3000/users/${username}`, options);
         const data = await response.json();
-        let listOfHabit = data.habit;
-
+        let listOfHabits = data.habit;
         if (data.err) {
             console.warn(data.err);
             window.location.href = "/";
         }
 
-        return listOfHabit;
+        return listOfHabits;
 
     } catch (err) {
         console.warn(err);
     }
 
 }
-
-
-
-
 
 function getLastThirtyDays() {
     const currentDate = new Date()
@@ -100,49 +105,59 @@ function getLastThirtyDays() {
 }
 
 function streakCheck(habitDate) {
-    let last30Days = getLastThirtyDays()
-    for (date of last30Days) {
-        for(d of habitDate){
-        if (d === date['date']) {
-            date['status'] = 1
+    try {
+        let last30Days = getLastThirtyDays()
+        for (date of last30Days) {
+            for (d of habitDate) {
+                if (d === date['date']) {
+                    date['status'] = 1
+                }
+            }
         }
-    }
-    }
-    let currentStreak = 0;
-    let longestStreak = 0;
-    for (day of last30Days) {
-        if(day['status'] === 1){
+        let currentStreak = 0;
+        let longestStreak = 0;
+        for (day of last30Days) {
+            if (day['status'] === 1) {
 
-            currentStreak ++
-        } else {
-            
-            if(currentStreak > longestStreak){
-                longestStreak = currentStreak
-            } 
-            currentStreak = 0
+                currentStreak++
+            } else {
+
+                if (currentStreak > longestStreak) {
+                    longestStreak = currentStreak
+                }
+                currentStreak = 0
+            }
         }
+
+        return [currentStreak, longestStreak]
+    } catch (err) {
+        let currentStreak = 0;
+        let longestStreak = 0;
+        return [currentStreak, longestStreak]
     }
-    
-    return [currentStreak, longestStreak]
 }
 
 
-const buttonCompletion = document.getElementById('completionButton')
+
 function completion(event) {
     // event.preventDefault()
     try {
-        const habitData = localStorage.getItem('token')
-        for (habit of habitData) {
-            streakData = streakCheck(habit['dates'])
-            habit['currentStreak'] = streakData[0]
-            habit['longestStreak'] = streakData[1]
-        }
-        console.log
+
+        const habitData = JSON.parse(localStorage.getItem('habitData'))
+        // for (habit of habitData) {
+        //     streakData = streakCheck(habit['dates'])
+        //     habit['currentStreak'] = streakData[0]
+        //     habit['longestStreak'] = streakData[1]
+        // }
+        habitData = {}
+
+        console.log(habitData)
+
         const data = {
             username: '',
             habit: habitData
         }
-        
+
         const options = {
             method: "POST",
             headers: new Headers({
@@ -154,10 +169,14 @@ function completion(event) {
 
         // const response = await fetch(`http://localhost:3000/users/${username}`, options)
     } catch (err) {
-
+        console.log(err)
     }
 }
-completion('event')
-// buttonCompletion.addEventListener('click', completion)
+
+    
+
+
+
+
 
 

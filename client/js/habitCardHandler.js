@@ -19,9 +19,14 @@ window.onload = async (event) => {
         deleteButtonEventHandler(data)
     }
 }
-function loadCards(data) {
 
-    document.querySelector('#habitsSection').innerHTML = "";
+function closeModalOnSuccess() {
+    const modalElement = document.getElementById('createHabitModalLabel')
+    const modal = bootstrap.Modal.getInstance(modalElement)
+    modal.hide()
+}
+
+function loadCards() {
     const habitData = JSON.parse(localStorage.getItem('habitData'))
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(habitData)
@@ -49,6 +54,30 @@ function deleteButtonEventHandler(data) {
     }
 }
 
+async function getAllUserHabits() {
+    try {
+
+        const options = {
+            headers: new Headers({
+                'Authorization': localStorage.getItem('token')
+            })
+        }
+        const username = localStorage.getItem('username');
+        const response = await fetch(`http://localhost:3000/users/${username}`, options);
+        const data = await response.json();
+        let listOfHabits = data.habit;
+        if (data.err) {
+            console.warn(data.err);
+            window.location.href = "/";
+        }
+        
+        return listOfHabits;
+        
+    } catch (err) {
+        console.warn(err);
+    }
+    
+}
 
 async function createHabit(e) {
     e.preventDefault();
@@ -69,7 +98,6 @@ async function createHabit(e) {
     }
 
     try {
-        console.log('test')
         const options = {
             method: 'POST',
             body: JSON.stringify(habitData),
@@ -80,6 +108,7 @@ async function createHabit(e) {
 
         const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
+
         let localHabitData = JSON.parse(localStorage.getItem('habitData'))
         console.log(typeof localHabitData)
         habit['id'] = localHabitData.length + 1
@@ -93,35 +122,30 @@ async function createHabit(e) {
         console.log(`Failed to create Habit: ${err}`);
     }
 }
-function closeModalOnSuccess() {
-    const modalElement = document.getElementById('createHabitModalLabel')
-    const modal = bootstrap.Modal.getInstance(modalElement)
-    modal.hide()
-}
 
-async function getAllUserHabits() {
+
+
+async function deleteHabit(habitName){
+
+    const username = localStorage.getItem("username");
+
+    habitName.replace(/%20/g, " ");
+    
     try {
-
-        const options = {
-            headers: new Headers({
-                'Authorization': localStorage.getItem('token')
-            })
+        const options = { 
+            method: 'DELETE' 
         }
-        const username = localStorage.getItem('username');
-        const response = await fetch(`http://localhost:3000/users/${username}`, options);
-        const data = await response.json();
-        let listOfHabits = data.habit;
-        if (data.err) {
-            console.warn(data.err);
-            window.location.href = "/";
-        }
+        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
 
-        return listOfHabits;
-
+        let localHabitData = JSON.parse(localStorage.getItem('habitData'))
+        console.log(localHabitData)
+        localHabitData = localHabitData.filter(habit => habit.habitName !== habitName)
+        console.log(localHabitData)
+        localStorage.setItem('habitData', JSON.stringify(localHabitData))
+        loadCards()
     } catch (err) {
         console.warn(err);
     }
-
 }
 
 function getLastThirtyDays() {
@@ -170,8 +194,6 @@ function streakCheck(habitDate) {
     }
 }
 
-
-
 function completionHabit(habit) {
 
     try {
@@ -202,23 +224,5 @@ function completionHabit(habit) {
         // const response = await fetch(`http://localhost:3000/users/${username}`, options)
     } catch (err) {
         console.log(err)
-    }
-}
-
-
-async function deleteHabit(habitName) {
-
-    const username = localStorage.getItem("username");
-
-    habitName.replace(/%20/g, " ");
-
-    try {
-        const options = {
-            method: 'DELETE'
-        }
-        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
-        loadCards()
-    } catch (err) {
-        console.warn(err);
     }
 }

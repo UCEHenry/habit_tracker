@@ -19,7 +19,9 @@ window.onload = async (event) => {
         deleteButtonEventHandler(data)
     }
 }
-function loadCards() {
+function loadCards(data) {
+
+    document.querySelector('#habitsSection').innerHTML = "";
     const habitData = JSON.parse(localStorage.getItem('habitData'))
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(habitData)
@@ -66,8 +68,6 @@ async function createHabit(e) {
         habit: habit
     }
 
-    // console.log(habitData);
-
     try {
         console.log('test')
         const options = {
@@ -87,7 +87,7 @@ async function createHabit(e) {
         localStorage.setItem('habitData', JSON.stringify(localHabitData))
         closeModalOnSuccess()
         loadCards()
-        console.log('test')
+
     } catch (err) {
         alert(`Unable to create Habit: ${err}`);
         console.log(`Failed to create Habit: ${err}`);
@@ -178,11 +178,9 @@ function completionHabit(habit) {
 
         const todaysDate = new Date().toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
 
-        if (habit['dates'][habit['dates'].length - 1] != todaysDate) 
-        
-        {
+        if (habit['dates'][habit['dates'].length - 1] != todaysDate) {
             habit['dates'].push(todaysDate)
-            
+
             streakData = streakCheck(habit['dates'])
             habit['currentStreak'] = streakData[0]
             habit['longestStreak'] = streakData[1]
@@ -208,15 +206,16 @@ function completionHabit(habit) {
 }
 
 
-async function deleteHabit(habitName){
+async function deleteHabit(habitName) {
 
     const username = localStorage.getItem("username");
 
     try {
-        const options = { 
-            method: 'DELETE' 
+        const options = {
+            method: 'DELETE'
         }
         await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
+        loadCards()
     } catch (err) {
         console.warn(err);
     }

@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "nodemon --legacy-watch index.js",
+    "prod": "node index.js",
     "seedDev": "node dbConfig/seedDev.js",
     "test": "jest --watchAll --detectOpenHandles --runInBand --verbose  --coverage",
     "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",

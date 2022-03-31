@@ -5,7 +5,7 @@ EXPOSE 3000
 RUN mkdir /code
 WORKDIR /code
 COPY . ./
-RUN ["bash", "/code/entrypoint.sh"]
+RUN ["chmod","+x", "/code/entrypoint.sh"]
 ENTRYPOINT ["/code/entrypoint.sh"]
 
 CMD if [ "$NODE_ENV" = "development" ]; \

@@ -19,8 +19,8 @@ services:
     ports: 
       - 3000:3000
     environment: 
-      - DB_NAME=habits
-      - DB_CONNECTION=mongodb://hiho:habitspass@db:27017
+      - DB_NAME=hihoClusterAndAway
+      - DB_CONNECTION=mongodb+srv://hihoclusterandaway.vky4q.mongodb.net/hihoclusterandaway
     depends_on:
       - db
      env_file:
@@ -33,7 +33,7 @@ services:
       - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=hiho
-      - MONGO_INITDB_DATABASE=habits
+      - MONGO_INITDB_DATABASE=hihoclusterandaway
       - MONGO_INITDB_ROOT_PASSWORD=habitspass
 volumes:
   dbdata:

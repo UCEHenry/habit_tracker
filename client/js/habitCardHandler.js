@@ -2,6 +2,7 @@ const hform = document.querySelector('.createHabitForm')
 hform.addEventListener('submit', createHabit);
 
 window.onload = async (event) => {
+    localStorage.removeItem('habitData')
     let data = await getAllUserHabits()
     if (Object.keys(data).length != 0) {
         let id = 1;
@@ -10,6 +11,7 @@ window.onload = async (event) => {
             id++
         }
         localStorage.setItem('habitData', JSON.stringify(data))
+
         let template = Handlebars.compile(document.querySelector('#template').innerHTML);
         let filled = template(data, {
             noEscape: true
@@ -17,6 +19,8 @@ window.onload = async (event) => {
         document.querySelector('#habitsSection').innerHTML = filled;
         completedButtonEventHandler(data)
         deleteButtonEventHandler(data)
+    } else {
+        localStorage.setItem('habitData', "[]")
     }
 }
 
@@ -107,12 +111,11 @@ async function createHabit(e) {
                 "Content-Type": "application/json"
             }
         }
-
         const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
-
+        console.log(data['habit'].length)
         let localHabitData = JSON.parse(localStorage.getItem('habitData'))
-        console.log(typeof localHabitData)
+        console.log(localHabitData)
         habit['id'] = localHabitData.length + 1
         localHabitData.push(habit)
         localStorage.setItem('habitData', JSON.stringify(localHabitData))

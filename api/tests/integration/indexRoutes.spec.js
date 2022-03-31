@@ -100,7 +100,7 @@ describe('habit endpoints', () => {
             expect(res.statusCode).toEqual(201);
             const userRes = await request(api).get('/users/phil');
             expect(userRes.statusCode).toEqual(200);
-            console.log("in the update test", userRes.body.habit[0]);
+            //console.log("in the update test", userRes.body.habit[0]);
     
     
     
@@ -154,6 +154,21 @@ describe('user endpoints', () => {
         expect(res.statusCode).toEqual(200)
         expect(res.body.username).toEqual('phil')
         expect(res.body.habit[0].habitName).toEqual('sleep')
+    })
+
+
+    it('should login a user', async () => {
+        const res = await request(api)
+            .post('/login')
+            .send({
+                username: username,
+                password: password
+            })
+        expect(res.statusCode).toEqual(200);
+
+
+
+
     })
 
    

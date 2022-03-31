@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648738613011" clover="3.2.0">
-  <project timestamp="1648738613013" name="All files">
-    <metrics statements="175" coveredstatements="120" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="24" elements="220" coveredelements="144" complexity="0" loc="175" ncloc="175" packages="7" files="7" classes="7"/>
+<coverage generated="1648749735370" clover="3.2.0">
+  <project timestamp="1648749735372" name="All files">
+    <metrics statements="174" coveredstatements="118" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="24" elements="219" coveredelements="142" complexity="0" loc="174" ncloc="174" packages="7" files="7" classes="7"/>
     <package name="code">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="server.js" path="/code/server.js">
@@ -18,9 +18,9 @@
       </file>
     </package>
     <package name="code.controllers">
-      <metrics statements="61" coveredstatements="39" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
+      <metrics statements="62" coveredstatements="39" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
       <file name="controller.js" path="/code/controllers/controller.js">
-        <metrics statements="61" coveredstatements="39" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
+        <metrics statements="62" coveredstatements="39" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -38,6 +38,7 @@
         <line num="25" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="34" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
@@ -116,9 +117,9 @@
       </file>
     </package>
     <package name="code.models">
-      <metrics statements="62" coveredstatements="39" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="12"/>
+      <metrics statements="60" coveredstatements="37" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="12"/>
       <file name="model.js" path="/code/models/model.js">
-        <metrics statements="62" coveredstatements="39" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="12"/>
+        <metrics statements="60" coveredstatements="37" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="12"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="6" count="19" type="stmt"/>
@@ -158,7 +159,6 @@
         <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
-        <line num="76" count="2" type="stmt"/>
         <line num="77" count="2" type="stmt"/>
         <line num="78" count="2" type="stmt"/>
         <line num="80" count="2" type="stmt"/>
@@ -169,7 +169,6 @@
         <line num="86" count="0" type="stmt"/>
         <line num="92" count="1" type="stmt"/>
         <line num="93" count="1" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
         <line num="95" count="1" type="stmt"/>
         <line num="96" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
@@ -208,13 +207,13 @@
         <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="9" type="stmt"/>
-        <line num="8" count="9" type="stmt"/>
-        <line num="9" count="9" type="stmt"/>
-        <line num="10" count="9" type="stmt"/>
-        <line num="11" count="9" type="stmt"/>
-        <line num="12" count="9" type="stmt"/>
-        <line num="17" count="9" type="stmt"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="10" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
       </file>

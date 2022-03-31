@@ -73,7 +73,7 @@ class User {
     }
 
     static createHabit(username, habit) {
-        console.log("creating habit ", username, habit)
+        //console.log("creating habit ", username, habit)
         return new Promise(async (resolve, reject) => {
             try {
      
@@ -91,7 +91,7 @@ class User {
     static updateAHabit(username, habit) {
         return new Promise(async (resolve, reject) => {
             try{
-                console.log('in model update habit', habit.habitName)
+                //console.log('in model update habit', habit.habitName)
                 const db = await init();
                 await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habit.habitName}}}, {$set:{'habit.$': habit}})
                 resolve(`Updated the habit: ${habit} for ${username}`)

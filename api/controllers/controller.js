@@ -26,10 +26,10 @@ async function createNewUser(req, res) {
     }
 }
 
-async function authLogin(req, res){
+async function authALogin(req, res){
+    console.log("in auth login HEELLLLLLLLLOOOOOOOOOOOOOOOO");
     try {
         const user = await User.findByUsername(req.body.username)
-        //console.log(user);
         if (!user) { 
             throw new Error('No user with this username') 
         }
@@ -149,4 +149,4 @@ async function remove(req, res) {
 //     }
 // }
 
-module.exports = { getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser, authLogin }
+module.exports = { getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser, authALogin }

@@ -1,5 +1,5 @@
 build:
   docker:
     web: 'docker-compose.dev.yaml'
-    run:
+run:
   web: bundle exec puma -C config/puma.rb

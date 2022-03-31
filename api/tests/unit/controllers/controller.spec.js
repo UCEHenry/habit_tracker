@@ -14,7 +14,7 @@ describe('user controller', () => {
     describe('getAll', () => {
         test('it returns users with a 200 status code', async () => {
             let testUsers = ['d1', 'd2']
-            jest.spyOn(User,'all','get')
+            jest.spyOn(User,'getall')
                  .mockResolvedValue(testUsers);
             await userController.getAll(null, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(200);
@@ -57,10 +57,10 @@ describe('user controller', () => {
             }
             jest.spyOn(User, 'updateAUser')
                 .mockResolvedValue(new User(testUser)); 
-            const mockReq = { params: { oldUsername: 'Vivian' , newUsername: 'Banks'} }
+            const mockReq = { body: { oldUsername: 'Vivian' , newUsername: 'Banks'} }
             await userController.updateUser(mockReq, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(200);
-            expect(mockJson).toHaveBeenCalledWith(new User(testUser));
+            expect(mockJson).toHaveBeenCalledWith('updated the user');
         })
     });
 

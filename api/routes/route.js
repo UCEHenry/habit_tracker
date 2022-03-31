@@ -6,6 +6,7 @@ const userController = require('../controllers/controller');
 router.get('/', userController.getAll)
 router.post('/createuser', userController.createNewUser)
 router.get('/:username', userController.getUser)
+router.patch('/updateuser/:username', userController.updateUser)
 router.post('/login', verifyToken, userController.authALogin)
 router.delete('/:username', userController.removeUser)
 router.post('/createhabit', userController.createHabit)

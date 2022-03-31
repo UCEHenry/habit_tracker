@@ -3,13 +3,11 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 async function getAll(req, res) {
-
     try{
-        const userData = await User.all
+        const userData = await User.getall(); 
         res.status(200).json(userData)
     } catch (err) {
-        res.status(404).json({err})
-        
+        res.status(404).json({err})    
     }
 }
 
@@ -27,7 +25,6 @@ async function createNewUser(req, res) {
 }
 
 async function authALogin(req, res){
-    console.log("in auth login HEELLLLLLLLLOOOOOOOOOOOOOOOO");
     try {
         const user = await User.findByUsername(req.body.username)
         if (!user) { 
@@ -66,10 +63,12 @@ async function getUser(req, res) {
 
 async function updateUser(req, res) {
     try{
-        const oldUsername = req.params.oldUsername
-        const newUsername = req.params.newUsername
-        const user = await User.updateAUser(oldUsername, newUsername)
-        res.status(200).json(user)
+
+        const oldUsername = req.body.oldUsername
+        const newUsername = req.body.newUsername
+        //console.log('in the updateuserController', req.body,"checking newUsername: ", newUsername)
+        await User.updateAUser(oldUsername, newUsername)
+        res.status(200).json("updated the user")
     } catch (err) {
         res.status(422).json({err})
     }

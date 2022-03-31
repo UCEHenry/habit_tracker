@@ -7,16 +7,17 @@ class User {
         this.username = data.username;
         this.password = data.password;
         this.habit = new Object(data.habit);
-        this.habitname = data.habitname;
+        //this.habitname = data.habitname;
     }
 
-    static get all() {
+    static getall() {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
                 const usersData = await db.collection('users').find().toArray()
-                const users = usersData.map(d => new User({ ...d, id: d._id }))
-                resolve(users);
+                //console.log('in get all function in models', usersData)
+                let users = usersData.map(d => new User({ ...d, id: d._id ,username: d.username, password: d.password, habit: d.habit}))
+                resolve(users); 
             } catch (err) {
                 // console.log(err);
                 reject("Error retrieving users")
@@ -53,8 +54,10 @@ class User {
     static updateAUser(oldUsername, newUsername) {
         return new Promise(async (resolve, reject) => {
             try{
-                let updatedUserData = await db.collection('users').updateOne({usename:oldUsername}, {$set:{username:newUsername}})
-                resolve(`Username ${oldUsername} changed to ${newUsername}`)
+                const db = await init();
+                //console.log('check in models update user function', oldUsername, newUsername)
+                await db.collection('users').updateOne({username: oldUsername}, {$set:{username: newUsername}})
+                resolve(`Username ${oldUsername} changed to ${newUsername}`);
             } catch (err) {
                 reject(`Error: ${err}`)
             }

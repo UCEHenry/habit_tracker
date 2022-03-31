@@ -217,7 +217,7 @@ async function deleteHabit(habitName){
         const options = { 
             method: 'DELETE' 
         }
-        await fetch(`http://localhost:3000/${username}/${habitName}`, options);
+        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
     } catch (err) {
         console.warn(err);
     }

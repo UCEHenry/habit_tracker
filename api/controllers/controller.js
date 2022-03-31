@@ -29,7 +29,7 @@ async function createNewUser(req, res) {
 async function authLogin(req, res){
     try {
         const user = await User.findByUsername(req.body.username)
-        console.log(user);
+        //console.log(user);
         if (!user) { 
             throw new Error('No user with this username') 
         }
@@ -101,7 +101,7 @@ async function updateHabit(req, res) {
     try{
         const username = req.body.username
         const habit = req.body.habit
-        console.log('in controller in updateHabit', username, habit)
+        //console.log('in controller in updateHabit', username, habit)
         await User.updateAHabit(username, habit)
         res.status(201).json('updated habit')
     } catch (err) {
@@ -112,7 +112,7 @@ async function updateHabit(req, res) {
 // TODO Testing and controllers
 async function remove(req, res) {
     try{
-        console.log('in remove habit in controllers', req.params.username, req.params.habitname)
+        //console.log('in remove habit in controllers', req.params.username, req.params.habitname)
         await User.removeHabit(req.params.username, req.params.habitname)
         res.status(204).json('habit deleted')
     } catch (err) {

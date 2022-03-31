@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648735890460" clover="3.2.0">
-  <project timestamp="1648735890462" name="All files">
-    <metrics statements="178" coveredstatements="122" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="24" elements="223" coveredelements="146" complexity="0" loc="178" ncloc="178" packages="7" files="7" classes="7"/>
+<coverage generated="1648738613011" clover="3.2.0">
+  <project timestamp="1648738613013" name="All files">
+    <metrics statements="175" coveredstatements="120" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="24" elements="220" coveredelements="144" complexity="0" loc="175" ncloc="175" packages="7" files="7" classes="7"/>
     <package name="code">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="server.js" path="/code/server.js">
@@ -18,9 +18,9 @@
       </file>
     </package>
     <package name="code.controllers">
-      <metrics statements="64" coveredstatements="41" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
+      <metrics statements="61" coveredstatements="39" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
       <file name="controller.js" path="/code/controllers/controller.js">
-        <metrics statements="64" coveredstatements="41" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
+        <metrics statements="61" coveredstatements="39" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="8"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -38,7 +38,6 @@
         <line num="25" count="0" type="stmt"/>
         <line num="30" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="34" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
@@ -75,12 +74,10 @@
         <line num="101" count="2" type="stmt"/>
         <line num="102" count="2" type="stmt"/>
         <line num="103" count="2" type="stmt"/>
-        <line num="104" count="2" type="stmt"/>
         <line num="105" count="2" type="stmt"/>
         <line num="106" count="2" type="stmt"/>
         <line num="108" count="0" type="stmt"/>
         <line num="114" count="2" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
         <line num="116" count="2" type="stmt"/>
         <line num="117" count="2" type="stmt"/>
         <line num="119" count="0" type="stmt"/>

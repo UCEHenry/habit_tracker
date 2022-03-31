@@ -109,7 +109,7 @@ async function updateHabit(req, res) {
 }
 
 // TODO Testing and controllers
-async function remove(req, res) {
+async function removeHabit(req, res) {
     try{
         await User.removeHabit(req.params.username, req.params.habitname)
         res.status(204).json('habit delteted')
@@ -119,4 +119,4 @@ async function remove(req, res) {
     }
 }
 
-module.exports = { getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser, authLogin }
+module.exports = { getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, removeHabit, removeUser, authLogin }

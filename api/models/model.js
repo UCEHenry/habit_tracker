@@ -91,13 +91,12 @@ class User {
     static updateAHabit(username, habit) {
         return new Promise(async (resolve, reject) => {
             try{
-                //console.log('in update habit', username, habitName)
-                
+                console.log('in model update habit', username, habit)
                 const db = await init();
                 await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$': habit}})
                 resolve(`Updated the habit: ${habit} for ${username}`)
             } catch (err) {
-                reject(`Habit: ${habitname} not found.`)
+                reject(`Habit: ${habit} not found.`)
             }
         })
     }

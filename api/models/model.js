@@ -107,7 +107,7 @@ class User {
             try {
                 const db = await init();
                 await db.collection('users').update(
-                    {'username': username},{$pull: {habit:{habitName: habitname}}})
+                    {username: username},{$pull: {habit:{habitName: habitname}}})
                 resolve(`${habitname} deleted`)
             } catch (err) {
                 reject(`${habitname} could not be deleted`)

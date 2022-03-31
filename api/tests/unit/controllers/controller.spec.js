@@ -97,7 +97,7 @@ describe('user controller', () => {
             }
             jest.spyOn(User, 'updateAHabit')
                 .mockResolvedValue(new User(testUser)); 
-            const mockReq = { body: { username: 'Vivian' , habitName: 'flying'} }
+            const mockReq = { body: { username: 'Vivian' , habit: { habitName: "eating", schedule: 'daily', completed: 'true', dates: [], currentStreak: 0, longestStreak: 0 }} }
             await userController.updateHabit(mockReq, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(201);
             expect(mockJson).toHaveBeenCalledWith('updated habit');

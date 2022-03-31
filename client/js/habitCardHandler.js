@@ -5,11 +5,16 @@ window.onload = async (event) => {
     let data = await getAllUserHabits()
     // console.log(data)
     localStorage.setItem('habitData', JSON.stringify(data))
-    let id = 1;
-    for (const element of data) {
-        element.id = id
-        id++
+    try {
+        let id = 1;
+        for (const element of data) {
+            element.id = id
+            id++
+        }
+    } catch (err) {
+
     }
+
 
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(data, {
@@ -18,16 +23,24 @@ window.onload = async (event) => {
     document.querySelector('#habitsSection').innerHTML = filled;
 
     completedButtonEventHandler(data)
-    
-    
+
+
+}
+
+function loadCards() {
+    const habitData = localStorage.getItem('habitData')
+    let template = Handlebars.compile(document.querySelector('#template').innerHTML);
+    let filled = template(habitData, {
+        noEscape: true
+    })
+    document.querySelector('#habitsSection').innerHTML = filled;
 }
 
 function completedButtonEventHandler(data) {
     const completionButtons = document.querySelectorAll('[id^="completionButton_"]')
-    for (i =0; i< completionButtons.length; i++) {
-        console.log(i)
+    for (i = 0; i < completionButtons.length; i++) {
         completionButtons[i].addEventListener('click', (e) => {
-            habitData = data[e.target.value -1]
+            habitData = data[e.target.value - 1]
             completionHabit(habitData)
         })
     }
@@ -65,11 +78,17 @@ async function createHabit(e) {
 
         const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
-
+        closeModalOnSuccess()
+        loadCards()
     } catch (err) {
         alert(`Unable to create Habit: ${err}`);
         console.log(`Failed to create Habit: ${err}`);
     }
+}
+function closeModalOnSuccess() {
+    const modalElement = document.getElementById('createHabitModalLabel')
+    const modal = bootstrap.Modal.getInstance(modalElement)
+    modal.hide()
 }
 
 async function getAllUserHabits() {
@@ -147,7 +166,7 @@ function streakCheck(habitDate) {
 
 function completionHabit(habit) {
     // event.preventDefault()
-    
+
     try {
 
         // const habitData = JSON.parse(localStorage.getItem('habitData'))
@@ -157,8 +176,13 @@ function completionHabit(habit) {
         //     habit['longestStreak'] = streakData[1]
         // }
         const todaysDate = new Date().toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
-        habit['dates'].push(todaysDate)
-        console.log(habit)
+        if (habit['dates'][habit['dates'].length - 1] != todaysDate) {
+            habit['dates'].push(todaysDate)
+            streakData = streakCheck(habit['dates'])
+            habit['currentStreak'] = streakData[0]
+            habit['longestStreak'] = streakData[1]
+        }
+
         const data = {
             username: '',
             habit: habitData
@@ -179,7 +203,7 @@ function completionHabit(habit) {
     }
 }
 
-    
+
 
 
 

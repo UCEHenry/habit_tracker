@@ -1,5 +1,5 @@
-// const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
-// passwordValidation()
+const signupFormSubmit = document.getElementById('signUpForm').addEventListener('submit', registerNewUser)
+passwordValidation()
 async function registerNewUser(event) {
     event.preventDefault()
     console.log("Hello")
@@ -20,8 +20,8 @@ async function registerNewUser(event) {
                     "Content-Type": "application/json"
                 }
             }
-
-            const response = await fetch(`${API_URL}/users`, options);
+            console.log(userData)
+            const response = await fetch(`http://localhost:3000/users/createuser`, options);
             const data = await response.json()
 
         } catch (err) {
@@ -45,4 +45,4 @@ function passwordValidation() {
     }
 }
 
-module.exports = { registerNewUser, passwordValidation }
+// module.exports = { registerNewUser, passwordValidation }

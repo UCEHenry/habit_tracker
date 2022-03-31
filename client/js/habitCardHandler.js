@@ -165,7 +165,7 @@ function completionHabit(habit) {
         }
 
         const options = {
-            method: "POST",
+            method: "PATCH",
             headers: new Headers({
                 'Authorization': localStorage.getItem('token')
             }),

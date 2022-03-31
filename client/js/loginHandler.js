@@ -48,3 +48,5 @@ function currentUser(){
     const username = localStorage.getItem('username')
     return username;
 }
+
+// module.exports = {requestLogin, login}

@@ -210,6 +210,8 @@ async function deleteHabit(habitName) {
 
     const username = localStorage.getItem("username");
 
+    habitName.replace(/%20/g, " ");
+
     try {
         const options = {
             method: 'DELETE'

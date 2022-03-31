@@ -1,3 +1,5 @@
 build:
   docker:
-    web: /_scripts/startDev.sh
+    web: docker-compose.dev.yaml
+    run:
+  web: bundle exec puma -C config/puma.rb

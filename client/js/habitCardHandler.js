@@ -3,30 +3,23 @@ hform.addEventListener('submit', createHabit);
 
 window.onload = async (event) => {
     let data = await getAllUserHabits()
-    // console.log(data)
+
     localStorage.setItem('habitData', JSON.stringify(data))
-    try {
+
+    if (Object.keys(data).length != 0) {
         let id = 1;
         for (const element of data) {
             element.id = id
             id++
         }
-    } catch (err) {
-
+        let template = Handlebars.compile(document.querySelector('#template').innerHTML);
+        let filled = template(data, {
+            noEscape: true
+        })
+        document.querySelector('#habitsSection').innerHTML = filled;
+        completedButtonEventHandler(data)
     }
-
-
-    let template = Handlebars.compile(document.querySelector('#template').innerHTML);
-    let filled = template(data, {
-        noEscape: true
-    })
-    document.querySelector('#habitsSection').innerHTML = filled;
-
-    completedButtonEventHandler(data)
-
-
 }
-
 function loadCards() {
     const habitData = localStorage.getItem('habitData')
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
@@ -202,11 +195,4 @@ function completionHabit(habit) {
         console.log(err)
     }
 }
-
-
-
-
-
-
-
 

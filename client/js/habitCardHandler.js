@@ -3,15 +3,13 @@ hform.addEventListener('submit', createHabit);
 
 window.onload = async (event) => {
     let data = await getAllUserHabits()
-
-    localStorage.setItem('habitData', JSON.stringify(data))
-
     if (Object.keys(data).length != 0) {
         let id = 1;
         for (const element of data) {
             element.id = id
             id++
         }
+        localStorage.setItem('habitData', JSON.stringify(data))
         let template = Handlebars.compile(document.querySelector('#template').innerHTML);
         let filled = template(data, {
             noEscape: true
@@ -21,11 +19,9 @@ window.onload = async (event) => {
     }
 }
 function loadCards() {
-    const habitData = localStorage.getItem('habitData')
+    const habitData = JSON.parse(localStorage.getItem('habitData'))
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
-    let filled = template(habitData, {
-        noEscape: true
-    })
+    let filled = template(habitData)
     document.querySelector('#habitsSection').innerHTML = filled;
 }
 
@@ -61,6 +57,7 @@ async function createHabit(e) {
     // console.log(habitData);
 
     try {
+        console.log('test')
         const options = {
             method: 'POST',
             body: JSON.stringify(habitData),
@@ -71,8 +68,14 @@ async function createHabit(e) {
 
         const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
+        let localHabitData = JSON.parse(localStorage.getItem('habitData'))
+        console.log(typeof localHabitData)
+        habit['id'] = localHabitData.length + 1
+        localHabitData.push(habit)
+        localStorage.setItem('habitData', JSON.stringify(localHabitData))
         closeModalOnSuccess()
         loadCards()
+        console.log('test')
     } catch (err) {
         alert(`Unable to create Habit: ${err}`);
         console.log(`Failed to create Habit: ${err}`);
@@ -158,24 +161,21 @@ function streakCheck(habitDate) {
 
 
 function completionHabit(habit) {
-    // event.preventDefault()
 
     try {
 
-        // const habitData = JSON.parse(localStorage.getItem('habitData'))
-        // for (habit of habitData) {
-        //     streakData = streakCheck(habit['dates'])
-        //     habit['currentStreak'] = streakData[0]
-        //     habit['longestStreak'] = streakData[1]
-        // }
         const todaysDate = new Date().toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
-        if (habit['dates'][habit['dates'].length - 1] != todaysDate) {
+
+        if (habit['dates'][habit['dates'].length - 1] != todaysDate) 
+        
+        {
             habit['dates'].push(todaysDate)
+            
             streakData = streakCheck(habit['dates'])
             habit['currentStreak'] = streakData[0]
             habit['longestStreak'] = streakData[1]
         }
-
+        console.log(habit)
         const data = {
             username: '',
             habit: habitData
@@ -188,7 +188,6 @@ function completionHabit(habit) {
             }),
             body: JSON.stringify(data),
         }
-        // console.log(options)
 
         // const response = await fetch(`http://localhost:3000/users/${username}`, options)
     } catch (err) {

@@ -16,6 +16,7 @@ window.onload = async (event) => {
         })
         document.querySelector('#habitsSection').innerHTML = filled;
         completedButtonEventHandler(data)
+        deleteButtonEventHandler(data)
     }
 }
 function loadCards() {
@@ -31,6 +32,17 @@ function completedButtonEventHandler(data) {
         completionButtons[i].addEventListener('click', (e) => {
             habitData = data[e.target.value - 1]
             completionHabit(habitData)
+        })
+    }
+}
+
+function deleteButtonEventHandler(data) {
+    const deleteButtons = document.querySelectorAll('[id^="deleteHabit"]')
+    for (i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', (e) => {
+            habitData = data[e.target.value - 1]["habitName"]
+            console.log(habitData)
+            deleteHabit(habitData)
         })
     }
 }
@@ -195,3 +207,17 @@ function completionHabit(habit) {
     }
 }
 
+
+async function deleteHabit(habitName){
+
+    const username = localStorage.getItem("username");
+
+    try {
+        const options = { 
+            method: 'DELETE' 
+        }
+        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
+    } catch (err) {
+        console.warn(err);
+    }
+}

@@ -9,7 +9,7 @@ router.get('/:username', userController.getUser)
 router.post('/login', userController.authLogin)
 router.delete('/:username', userController.removeUser)
 router.post('/createhabit', userController.createHabit)
-router.delete('/:username/:habitname', userController.remove)
+router.delete('/:username/:habitname', userController.removeHabit)
 router.patch('/:username', userController.updateHabit)
 
 

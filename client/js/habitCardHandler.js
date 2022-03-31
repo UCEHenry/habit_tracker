@@ -24,7 +24,11 @@ async function createHabit(e) {
     const username = localStorage.getItem('username');
     const habit = {
         habitName: e.target.habitName.value,
-        schedule: e.target.habitSchedule.value
+        schedule: e.target.habitSchedule.value,
+        completed: 'false',
+        dates: [],
+        currentStreak: 0,
+        longestStreak: 0
     }
 
     const habitData = {
@@ -41,31 +45,31 @@ async function createHabit(e) {
             headers: {
                 "Content-Type": "application/json"
             }
-        } 
+        }
 
         const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
 
-    } catch(err) {
+    } catch (err) {
         alert(`Unable to create Habit: ${err}`);
         console.log(`Failed to create Habit: ${err}`);
     }
 }
 
-async function getAllUserHabits(){
+async function getAllUserHabits() {
     try {
-        
-        const options = { 
+
+        const options = {
             headers: new Headers({
                 'Authorization': localStorage.getItem('token')
-            }) 
+            })
         }
         const username = localStorage.getItem('username');
         const response = await fetch(`http://localhost:3000/users/${username}`, options);
         const data = await response.json();
         let listOfHabit = data.habit;
 
-        if(data.err){
+        if (data.err) {
             console.warn(data.err);
             window.location.href = "/";
         }
@@ -77,3 +81,86 @@ async function getAllUserHabits(){
     }
 
 }
+
+
+
+
+
+function getLastThirtyDays() {
+    const currentDate = new Date()
+    const thirtyDaysAgo = new Date(currentDate.setDate(currentDate.getDate() - 30))
+    const last30DaysList = []
+    // last30DaysList.push({ "date": currentDate.toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" }), "status": 0 })
+    for (let d = 0; d < 30; d++) {
+        // const counterDate = new Date(currentDate.setDate(currentDate.getDate() - 1)).toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
+        const counterDate = new Date(thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() + 1)).toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
+        last30DaysList.push({ "date": counterDate, "status": 0 })
+    }
+    return last30DaysList
+}
+
+function streakCheck(habitDate) {
+    let last30Days = getLastThirtyDays()
+    for (date of last30Days) {
+        for(d of habitDate){
+        if (d === date['date']) {
+            date['status'] = 1
+        }
+    }
+    }
+    let currentStreak = 0;
+    let longestStreak = 0;
+    for (day of last30Days) {
+        if(day['status'] === 1){
+
+            currentStreak ++
+        } else {
+            
+            if(currentStreak > longestStreak){
+                longestStreak = currentStreak
+            } 
+            currentStreak = 0
+        }
+    }
+    
+    return [currentStreak, longestStreak]
+}
+
+
+const buttonCompletion = document.getElementById('completionButton')
+function completion(event) {
+    // event.preventDefault()
+    try {
+        const habitData = localStorage.getItem('token')
+        for (habit of habitData) {
+            streakData = streakCheck(habit['dates'])
+            habit['currentStreak'] = streakData[0]
+            habit['longestStreak'] = streakData[1]
+        }
+        console.log
+        const data = {
+            username: '',
+            habit: habitData
+        }
+        
+        
+
+
+        const options = {
+            method: "POST",
+            headers: new Headers({
+                'Authorization': localStorage.getItem('token')
+            }),
+            body: JSON.stringify(data),
+        }
+        // console.log(options)
+
+        // const response = await fetch(`http://localhost:3000/users/${username}`, options)
+    } catch (err) {
+
+    }
+}
+completion('event')
+// buttonCompletion.addEventListener('click', completion)
+
+

@@ -108,19 +108,20 @@
                 <div class="col-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <p class="card-text">{{this.habitName}}</p>
+                            <h2 class="card-text">{{this.habitName}}</h2>
+                            <button id="completionButton" class="btn btn-dark btn-lg">+</button>
                             <div class="d-flex justify-content-end align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseExample_{{this.id}}"
-                                        aria-expanded="false" aria-controls="collapseExample_{{this.id}}">View stats</button>
+                                        data-bs-toggle="collapse" data-bs-target="#collapsee_{{this.id}}"
+                                        aria-expanded="false" aria-controls="collapse_{{this.id}}">View stats</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="collapse" id="collapseExample_{{this.id}}">
+                    <div class="collapse" id="collapse_{{this.id}}">
                         <div class="card card-body">
                             <p>
                                 <!-- longest streak {{this.longestStreak}}

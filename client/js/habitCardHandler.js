@@ -19,6 +19,13 @@ window.onload = async (event) => {
         deleteButtonEventHandler(data)
     }
 }
+
+function closeModalOnSuccess() {
+    const modalElement = document.getElementById('createHabitModalLabel')
+    const modal = bootstrap.Modal.getInstance(modalElement)
+    modal.hide()
+}
+
 function loadCards() {
     const habitData = JSON.parse(localStorage.getItem('habitData'))
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
@@ -66,10 +73,7 @@ async function createHabit(e) {
         habit: habit
     }
 
-    // console.log(habitData);
-
     try {
-        console.log('test')
         const options = {
             method: 'POST',
             body: JSON.stringify(habitData),
@@ -80,6 +84,7 @@ async function createHabit(e) {
 
         const response = await fetch('http://localhost:3000/users/createhabit', options);
         let data = await response.json();
+
         let localHabitData = JSON.parse(localStorage.getItem('habitData'))
         console.log(typeof localHabitData)
         habit['id'] = localHabitData.length + 1
@@ -87,17 +92,14 @@ async function createHabit(e) {
         localStorage.setItem('habitData', JSON.stringify(localHabitData))
         closeModalOnSuccess()
         loadCards()
-        console.log('test')
+
     } catch (err) {
         alert(`Unable to create Habit: ${err}`);
         console.log(`Failed to create Habit: ${err}`);
     }
 }
-function closeModalOnSuccess() {
-    const modalElement = document.getElementById('createHabitModalLabel')
-    const modal = bootstrap.Modal.getInstance(modalElement)
-    modal.hide()
-}
+
+
 
 async function getAllUserHabits() {
     try {
@@ -115,13 +117,36 @@ async function getAllUserHabits() {
             console.warn(data.err);
             window.location.href = "/";
         }
-
+        
         return listOfHabits;
-
+        
     } catch (err) {
         console.warn(err);
     }
+    
+}
 
+async function deleteHabit(habitName){
+
+    const username = localStorage.getItem("username");
+
+    habitName.replace(/%20/g, " ");
+    
+    try {
+        const options = { 
+            method: 'DELETE' 
+        }
+        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
+
+        let localHabitData = JSON.parse(localStorage.getItem('habitData'))
+        console.log(localHabitData)
+        localHabitData = localHabitData.filter(habit => habit.habitName !== habitName)
+        console.log(localHabitData)
+        localStorage.setItem('habitData', JSON.stringify(localHabitData))
+        loadCards()
+    } catch (err) {
+        console.warn(err);
+    }
 }
 
 function getLastThirtyDays() {
@@ -170,8 +195,6 @@ function streakCheck(habitDate) {
     }
 }
 
-
-
 function completionHabit(habit) {
 
     try {
@@ -204,22 +227,5 @@ function completionHabit(habit) {
         // const response = await fetch(`http://localhost:3000/users/${username}`, options)
     } catch (err) {
         console.log(err)
-    }
-}
-
-
-async function deleteHabit(habitName){
-
-    const username = localStorage.getItem("username");
-
-    habitName.replace(/%20/g, " ");
-
-    try {
-        const options = { 
-            method: 'DELETE' 
-        }
-        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
-    } catch (err) {
-        console.warn(err);
     }
 }

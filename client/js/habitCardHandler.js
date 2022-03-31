@@ -3,7 +3,7 @@ hform.addEventListener('submit', createHabit);
 
 window.onload = async (event) => {
     let data = await getAllUserHabits()
-    console.log(data)
+    // console.log(data)
     localStorage.setItem('habitData', JSON.stringify(data))
     let id = 1;
     for (const element of data) {
@@ -17,14 +17,20 @@ window.onload = async (event) => {
     })
     document.querySelector('#habitsSection').innerHTML = filled;
 
+    completedButtonEventHandler(data)
+    
+    
+}
 
+function completedButtonEventHandler(data) {
     const completionButtons = document.querySelectorAll('[id^="completionButton_"]')
     for (i =0; i< completionButtons.length; i++) {
+        console.log(i)
         completionButtons[i].addEventListener('click', (e) => {
-            console.log('click', i)
+            habitData = data[e.target.value -1]
+            completionHabit(habitData)
         })
     }
-    
 }
 
 
@@ -139,20 +145,20 @@ function streakCheck(habitDate) {
 
 
 
-function completion(event) {
+function completionHabit(habit) {
     // event.preventDefault()
+    
     try {
 
-        const habitData = JSON.parse(localStorage.getItem('habitData'))
+        // const habitData = JSON.parse(localStorage.getItem('habitData'))
         // for (habit of habitData) {
         //     streakData = streakCheck(habit['dates'])
         //     habit['currentStreak'] = streakData[0]
         //     habit['longestStreak'] = streakData[1]
         // }
-        habitData = {}
-
-        console.log(habitData)
-
+        const todaysDate = new Date().toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
+        habit['dates'].push(todaysDate)
+        console.log(habit)
         const data = {
             username: '',
             habit: habitData

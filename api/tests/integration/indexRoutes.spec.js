@@ -95,7 +95,7 @@ describe('habit endpoints', () => {
                 .patch('/users/phil')
                 .send({
                     username:'phil',
-                    habitName:'sleep'
+                    habit: {habitName:'sleep', schedule:'weekly',completed:'true', dates:['1/1/2022', '7/1/2022'], currentStreak:4, longestStreak:2}
                 })
             expect(res.statusCode).toEqual(201);
             const userRes = await request(api).get('/users/phil');

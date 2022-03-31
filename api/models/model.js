@@ -88,21 +88,14 @@ class User {
         });
     }
 
-    static updateAHabit(username, habitName) {
+    static updateAHabit(username, habit) {
         return new Promise(async (resolve, reject) => {
             try{
-                console.log('in update habit', username, habitName)
-                let status = true;
+                //console.log('in update habit', username, habitName)
+                
                 const db = await init();
-                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})
-                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$inc:{'habit.$.currentStreak': 1}})
-                status = false;
-                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})
-                
-
-                
-
-                resolve(`Updated the habit: ${habitName} for ${username}`)
+                await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$': habit}})
+                resolve(`Updated the habit: ${habit} for ${username}`)
             } catch (err) {
                 reject(`Habit: ${habitname} not found.`)
             }

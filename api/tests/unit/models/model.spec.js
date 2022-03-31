@@ -20,6 +20,15 @@ describe('db test', () => {
     // test server running
 
     // should returning all users
+    it('should get all users', async () => {
+        const user = db.collection('user')
+        const mockUser = { _id: 'some-user-id', username: 'John', password: "abc" };
+        const mockUserTwo = {_id: 'some-user-id', username: 'snow', password: "qrfd" }
+        await user.insertOne(mockUser);
+        await user.insertOne(mockUserTwo);
+        const insertedUser = await user.findOne({ username: 'John' });
+        expect(insertedUser).toEqual(mockUser);
+    })
 
     // should create a new user
     it('should create a new user', async () => {

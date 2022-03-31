@@ -14,7 +14,6 @@ services:
     command: [ "http-server" ]
   api:
     build:
-      context: api
       dockerfile: Dockerfile
     container_name: dev_api
     ports: 

@@ -31,6 +31,8 @@ function loadCards() {
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(habitData)
     document.querySelector('#habitsSection').innerHTML = filled;
+    completedButtonEventHandler(habitData)
+    deleteButtonEventHandler(habitData)
 }
 
 function completedButtonEventHandler(data) {
@@ -123,8 +125,6 @@ async function createHabit(e) {
     }
 }
 
-
-
 async function deleteHabit(habitName){
 
     const username = localStorage.getItem("username");
@@ -195,9 +195,8 @@ function streakCheck(habitDate) {
 }
 
 function completionHabit(habit) {
-
+    console.log('teset')
     try {
-
         const todaysDate = new Date().toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
 
         if (habit['dates'][habit['dates'].length - 1] != todaysDate) {

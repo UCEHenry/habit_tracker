@@ -5,7 +5,7 @@ const userController = require('../controllers/controller');
 
 router.get('/', verifyToken, userController.getAll)
 router.post('/createuser', userController.createNewUser)
-router.get('/:username', userController.getUser)
+router.get('/:username', verifyToken, userController.getUser)
 router.patch('/updateuser/:username', userController.updateUser)
 router.post('/login', userController.authLogin)
 router.delete('/:username', userController.removeUser)

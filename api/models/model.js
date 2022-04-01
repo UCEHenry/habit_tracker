@@ -105,7 +105,7 @@ class User {
     }
 
     static removeHabit(username, habitname) {
-        //console.log("in models", username, habitname)
+        console.log("in models", username, habitname)
         return new Promise(async(resolve, reject) => {
             try {
                 const db = await init();

@@ -149,6 +149,21 @@ describe('user endpoints', () => {
         const userRes = await request(api).get('/users/carlton')
         expect(userRes.statusCode).toEqual(200);
     })
+
+
+    it('Should not post a user that already exists.', async () => {
+        
+        const res = await request(api)
+            .post('/users/createuser')
+            .send({
+                username: 'will',
+                password: password
+            })
+        expect(res.statusCode).toEqual(422)
+        //console.log(res.body)
+        const userRes = await request(api).get('/users/phil')
+        expect(userRes.statusCode).toEqual(200);
+    })
     
     it('Should get user.', async () => {
         const res = await request(api).get('/users/phil')

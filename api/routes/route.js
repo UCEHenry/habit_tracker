@@ -3,7 +3,7 @@ const router = express.Router();
 const { verifyToken } = require('../middleware/auth');
 const userController = require('../controllers/controller');
 
-router.get('/', verifyToken, userController.getAll)
+router.get('/', userController.getAll)
 router.post('/createuser', userController.createNewUser)
 router.get('/:username', userController.getUser)
 router.patch('/updateuser/:username', userController.updateUser)

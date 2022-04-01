@@ -15,7 +15,7 @@ class User {
             try {
                 const db = await init()
                 const usersData = await db.collection('users').find().toArray()
-                console.log('in get all function in models', usersData)
+                //console.log('in get all function in models', usersData)
                 let users = usersData.map(d => new User({ ...d, id: d._id ,username: d.username, password: d.password, habit: d.habit}))
                 resolve(users); 
             } catch (err) {
@@ -43,6 +43,7 @@ class User {
         return new Promise(async (resolve, reject) => {
             try {
                 const db = await init();
+                console.log("in create user", username, password)
                 let existingUser = await db.collection('users').findOne({username: username})
                 if(existingUser === null){
                     let userData = await db.collection('users').insertOne({ username: username, password: password });
@@ -50,7 +51,7 @@ class User {
                     resolve(newUser);
                 }
                 else{
-                    resolve(`${username} already exists`);
+                    reject(`Error creating user: ${username}`);
                 }
             } catch (err) {
                 reject(`Error creating user: ${username}`);

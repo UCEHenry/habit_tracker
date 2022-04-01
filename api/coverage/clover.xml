@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648808530294" clover="3.2.0">
-  <project timestamp="1648808530296" name="All files">
-    <metrics statements="166" coveredstatements="136" conditionals="8" coveredconditionals="1" methods="33" coveredmethods="31" elements="207" coveredelements="168" complexity="0" loc="166" ncloc="166" packages="6" files="6" classes="6"/>
+<coverage generated="1648812961324" clover="3.2.0">
+  <project timestamp="1648812961325" name="All files">
+    <metrics statements="167" coveredstatements="137" conditionals="8" coveredconditionals="1" methods="33" coveredmethods="31" elements="208" coveredelements="169" complexity="0" loc="167" ncloc="167" packages="6" files="6" classes="6"/>
     <package name="code">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="server.js" path="/code/server.js">
@@ -74,14 +74,14 @@
         <line num="100" count="2" type="stmt"/>
         <line num="101" count="2" type="stmt"/>
         <line num="102" count="2" type="stmt"/>
-        <line num="104" count="2" type="stmt"/>
         <line num="105" count="2" type="stmt"/>
-        <line num="107" count="0" type="stmt"/>
-        <line num="113" count="2" type="stmt"/>
+        <line num="106" count="2" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
         <line num="115" count="2" type="stmt"/>
-        <line num="116" count="2" type="stmt"/>
-        <line num="118" count="0" type="stmt"/>
-        <line num="151" count="2" type="stmt"/>
+        <line num="117" count="2" type="stmt"/>
+        <line num="118" count="2" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="124" count="2" type="stmt"/>
       </file>
     </package>
     <package name="code.dbConfig">
@@ -99,9 +99,9 @@
       </file>
     </package>
     <package name="code.models">
-      <metrics statements="63" coveredstatements="55" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="19"/>
+      <metrics statements="64" coveredstatements="56" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="19"/>
       <file name="model.js" path="/code/models/model.js">
-        <metrics statements="63" coveredstatements="55" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="19"/>
+        <metrics statements="64" coveredstatements="56" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="19"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="6" count="23" type="stmt"/>
@@ -154,17 +154,18 @@
         <line num="95" count="0" type="stmt"/>
         <line num="101" count="1" type="stmt"/>
         <line num="102" count="1" type="stmt"/>
-        <line num="104" count="1" type="stmt"/>
+        <line num="103" count="1" type="stmt"/>
         <line num="105" count="1" type="stmt"/>
         <line num="106" count="1" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
         <line num="115" count="2" type="stmt"/>
         <line num="116" count="2" type="stmt"/>
         <line num="117" count="2" type="stmt"/>
         <line num="118" count="2" type="stmt"/>
         <line num="120" count="2" type="stmt"/>
         <line num="122" count="0" type="stmt"/>
-        <line num="133" count="2" type="stmt"/>
+        <line num="129" count="2" type="stmt"/>
       </file>
     </package>
     <package name="code.routes">

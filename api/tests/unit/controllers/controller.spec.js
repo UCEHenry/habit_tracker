@@ -107,7 +107,7 @@ describe('user controller', () => {
     describe('remove a habit', () => {
         test('it returns a 204 status code', async () => {
             const mockReq = { params: { username:'phil' , habitname: 'sleep'} }
-            await userController.remove(mockReq, mockRes);
+            await userController.removeHabit(mockReq, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(204);
         })
     });

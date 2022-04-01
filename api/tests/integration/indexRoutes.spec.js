@@ -93,7 +93,7 @@ describe('habit endpoints', () => {
 
         it('Should update a selected habit from a user', async () => {
             const res = await request(api)
-                .patch('/users/phil')
+                .post('/users/updatehabit')
                 .send({
                     username:'phil',
                     habit: {habitName:'sleep', schedule:'weekly',completed:'true', dates:['1/1/2022', '7/1/2022'], currentStreak:4, longestStreak:2}

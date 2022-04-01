@@ -98,6 +98,7 @@ class User {
     }
 
     static updateAHabit(username, habit) {
+        console.log('in model update habit', habit.habitName)
         return new Promise(async (resolve, reject) => {
             try{
                 //console.log('in model update habit', habit.habitName)
@@ -111,12 +112,11 @@ class User {
     }
 
     static removeHabit(username, habitname) {
-        console.log("in models", username, habitname)
         return new Promise(async(resolve, reject) => {
             try {
                 const db = await init();
-                await db.collection('users').update(
-                    {username: username},{$pull: {habit:{habitName: habitname}}})
+                await db.collection('users').updateOne({username: username},{$pull: {habit:{habitName: habitname}}})
+                //console.log("in models", username, habitname)
                 resolve(`${habitname} deleted`)
             } catch (err) {
                 reject(`${habitname} could not be deleted`)
@@ -125,9 +125,5 @@ class User {
     }
 
 }
-
-
-//db.users.updateOne({username: 'phil', habit: {$elemMatch: {habitName:'sleep'}}},{$set:{'habit.$.completed': true}})
-//db.users.updateOne({username: 'phil', habit: {$elemMatch: {habitName:'sleep'}}}, {$push: {'habit.$.dates': '1/1/2022'}})
 
 module.exports = User

@@ -3,8 +3,10 @@ const signUpForm = document.querySelector("#signUpForm")
 
 logInForm.addEventListener('submit', requestLogin)
 signUpForm.addEventListener('submit', registerNewUser)
-
 passwordValidation()
+
+const API_URL = "https://fphabitapp.herokuapp.com/users"
+
 
 async function registerNewUser(event) {
     event.preventDefault()
@@ -25,7 +27,7 @@ async function registerNewUser(event) {
                 }
             }
 
-            const response = await fetch(`http://localhost:3000/users/createuser`, options);
+            const response = await fetch(`${API_URL}/createuser`, options);
             const data = await response.json()
 
             if (data.err){ 
@@ -65,7 +67,7 @@ async function logInAfterSignUp(e, userData){
                 "Content-Type" : "application/json"
             }
         };
-        const response = await fetch(`http://localhost:3000/users/login`, options);
+        const response = await fetch(`${API_URL}/login`, options);
         let data = await response.json();
 
         if (data.err){ 
@@ -96,7 +98,7 @@ async function requestLogin(e){
             }
         };
             
-        const response = await fetch(`http://localhost:3000/users/login`, options);
+        const response = await fetch(`${API_URL}/login`, options);
         let data = await response.json();
 
         if (data.err){ 

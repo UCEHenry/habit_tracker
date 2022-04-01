@@ -51,6 +51,7 @@ class User {
             }
         });
     }
+    
     static updateAUser(oldUsername, newUsername) {
         return new Promise(async (resolve, reject) => {
             try{
@@ -63,6 +64,7 @@ class User {
             }
         })
     }
+    
     RemoveAUser() {
         return new Promise(async (resolve, reject) => {
             try {

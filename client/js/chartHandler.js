@@ -1,6 +1,3 @@
-
-
-
 // function getLastThirtyDays() {
 //     const currentDate = new Date()
 //     const last30DaysList = []

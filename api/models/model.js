@@ -51,7 +51,7 @@ class User {
                     resolve(newUser);
                 }
                 else{
-                    reject(`Error creating user: ${username}`);
+                    reject(`${username} already exists`);
                 }
             } catch (err) {
                 reject(`Error creating user: ${username}`);

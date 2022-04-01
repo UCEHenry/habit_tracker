@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648769720071" clover="3.2.0">
-  <project timestamp="1648769720072" name="All files">
-    <metrics statements="174" coveredstatements="136" conditionals="10" coveredconditionals="0" methods="35" coveredmethods="31" elements="219" coveredelements="167" complexity="0" loc="174" ncloc="174" packages="7" files="7" classes="7"/>
+<coverage generated="1648802109404" clover="3.2.0">
+  <project timestamp="1648802109405" name="All files">
+    <metrics statements="163" coveredstatements="134" conditionals="6" coveredconditionals="0" methods="33" coveredmethods="31" elements="202" coveredelements="165" complexity="0" loc="163" ncloc="163" packages="6" files="6" classes="6"/>
     <package name="code">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="server.js" path="/code/server.js">
@@ -96,23 +96,6 @@
         <line num="8" count="19" type="stmt"/>
         <line num="9" count="19" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
-      </file>
-    </package>
-    <package name="code.middleware">
-      <metrics statements="11" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="auth.js" path="/code/middleware/auth.js">
-        <metrics statements="11" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
       </file>
     </package>
     <package name="code.models">

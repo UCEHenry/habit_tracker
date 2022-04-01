@@ -210,6 +210,7 @@ function dateStreaksMaker(userDates) {
 
 async function completionHabit(habit) {
     try {
+        const username = localStorage.getItem('username')
         newHabitDates = dateStreaksMaker(habit['dates'])
         newHabitStreaks = streakCheck(newHabitDates)
         habit['dates'] = newHabitDates
@@ -230,10 +231,12 @@ async function completionHabit(habit) {
             body: JSON.stringify(data),
         }
 
-        // const response = await fetch(`http://localhost:3000/users/updatehabit`, options)
-        // const respData = await response.json()
- 
+        const response = await fetch(`http://localhost:3000/users/updatehabit`, options)
+        const respData = await response.json()
+        loadCards()
     } catch (err) {
         console.log(err)
     }
 }
+
+

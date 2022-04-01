@@ -1,8 +1,8 @@
 const hform = document.querySelector('.createHabitForm')
 hform.addEventListener('submit', createHabit);
 
-// const API_URL = "https://fphabitapp.herokuapp.com/users"
-const API_URL = "http://localhost:3000/users"
+const API_URL = "https://fphabitapp.herokuapp.com/users"
+// const API_URL = "http://localhost:3000/users"
 
 window.onload = async (event) => {
     localStorage.removeItem('habitData')

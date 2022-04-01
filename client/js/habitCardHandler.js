@@ -11,16 +11,18 @@ window.onload = async (event) => {
             id++
         }
         localStorage.setItem('habitData', JSON.stringify(data))
-
+        
         let template = Handlebars.compile(document.querySelector('#template').innerHTML);
         let filled = template(data, {
             noEscape: true
         })
         document.querySelector('#habitsSection').innerHTML = filled;
+        loadHeroStats()
         completedButtonEventHandler(data)
         deleteButtonEventHandler(data)
     } else {
         localStorage.setItem('habitData', "[]")
+        loadHeroStats()
     }
 }
 
@@ -35,8 +37,24 @@ function loadCards() {
     let template = Handlebars.compile(document.querySelector('#template').innerHTML);
     let filled = template(habitData)
     document.querySelector('#habitsSection').innerHTML = filled;
+    loadHeroStats()
     completedButtonEventHandler(habitData)
     deleteButtonEventHandler(habitData)
+    
+}
+
+function loadHeroStats() {
+    const username = localStorage.getItem('username')
+    const habitData = JSON.parse(localStorage.getItem('habitData'))
+    const data = {
+        username: username,
+        bestHabitStats: bestWorstStats(habitData)[0],
+        worstHabitStats: bestWorstStats(habitData)[0]
+    }
+    console.log(data)
+    let template = Handlebars.compile(document.querySelector('#heroTemplate').innerHTML);
+    let filled = template(data)
+    document.querySelector('#heroStats').innerHTML = filled;
 }
 
 function completedButtonEventHandler(data) {
@@ -248,3 +266,34 @@ async function completionHabit(habit) {
 }
 
 
+function bestWorstStats(allHabitsData) {
+    let bestStats ={
+        habitName:'',
+        longestStreak: 0
+    }
+    let worstStats = {
+        habitName:'',
+        longestStreak: 0
+    }
+    console.log(allHabitsData)
+    for(habit of allHabitsData) {
+        // console.log(habit)
+        newHabitStreaks = streakCheck(habit['dates'])
+        console.log(bestStats['longestStreak'])
+        console.log(typeof newHabitStreaks[1])
+        if(newHabitStreaks[1] > bestStats['longestStreak']) {
+            console.log('best')
+            bestStats['habitName'] = habit['habitName']
+            bestStats['longestStreak'] = newHabitStreaks[1]
+        } else if (newHabitStreaks[1] < worstStats['longestStreak']) {
+            console.log('worst')
+            worstStats['habitName'] = habit['habitName']
+            worstStats['longestStreak'] = newHabitStreaks[1]
+        } else {
+            bestStats['habitName'] = 'lets get one done!'
+            worstStats['habitName'] = 'lets get one done!'
+        }
+    }
+
+    return [bestStats, worstStats]
+}

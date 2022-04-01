@@ -99,17 +99,17 @@ async function createHabit(req, res) {
 async function updateHabit(req, res) {
     try{
         const username = req.body.username
-        const habitname = req.body.habitName
-        console.log('in controller in updateHabit', username, habitname)
-        await User.updateAHabit(username, habitname)
-        res.status(204).json('updated habit')
+        const habit = req.body.habit
+        console.log('in controller in updateHabit', username, habit)
+        const user = await User.updateAHabit(username, habit)
+        res.status(204).json(user)
     } catch (err) {
         res.status(422).json({err})
     }
 }
 
 // TODO Testing and controllers
-async function remove(req, res) {
+async function removeHabit(req, res) {
     try{
         await User.removeHabit(req.params.username, req.params.habitname)
         res.status(204).json('habit delteted')
@@ -119,33 +119,4 @@ async function remove(req, res) {
     }
 }
 
-async function authLogin(req, res){
-    try {
-        const user = await User.findByUsername(req.body.username)
-        console.log(user);
-        if (!user) { 
-            throw new Error('No user with this username') 
-        }
-        const authed = await bcrypt.compare(req.body.password, user.password)
-        if (!!authed){
-            const payload = { username: user.username }
-            const sendToken = (err, token) => {
-                if(err){ 
-                    throw new Error('Error in token generation') 
-                }
-                res.status(200).json({
-                    success: true,
-                    token: "Bearer " + token,
-                });
-            }
-            // should be added process.env.SECRET
-            jwt.sign(payload, "secret", { expiresIn: 3600 }, sendToken);
-        } else {
-            throw new Error('User could not be authenticated')  
-        }
-    } catch (err) {
-        res.status(401).json({ err });
-    }
-}
-
-module.exports = { getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, remove, removeUser, authLogin }
+module.exports = { getAll, getUser, createNewUser, updateUser, createHabit, updateHabit, removeHabit, removeUser, authLogin }

@@ -1,6 +1,6 @@
 services:
   client:
-    container_name: ddev_client
+    container_name: dev_client
     build: ./client
     image: debug_client
     ports: 

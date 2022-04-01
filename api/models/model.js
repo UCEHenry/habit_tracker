@@ -15,7 +15,7 @@ class User {
             try {
                 const db = await init()
                 const usersData = await db.collection('users').find().toArray()
-                //console.log('in get all function in models', usersData)
+                console.log('in get all function in models', usersData)
                 let users = usersData.map(d => new User({ ...d, id: d._id ,username: d.username, password: d.password, habit: d.habit}))
                 resolve(users); 
             } catch (err) {

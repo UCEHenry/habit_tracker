@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1648812961324" clover="3.2.0">
-  <project timestamp="1648812961325" name="All files">
-    <metrics statements="167" coveredstatements="137" conditionals="8" coveredconditionals="1" methods="33" coveredmethods="31" elements="208" coveredelements="169" complexity="0" loc="167" ncloc="167" packages="6" files="6" classes="6"/>
+<coverage generated="1648813441079" clover="3.2.0">
+  <project timestamp="1648813441080" name="All files">
+    <metrics statements="168" coveredstatements="131" conditionals="8" coveredconditionals="1" methods="33" coveredmethods="28" elements="209" coveredelements="160" complexity="0" loc="168" ncloc="168" packages="6" files="6" classes="6"/>
     <package name="code">
       <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="server.js" path="/code/server.js">
@@ -24,9 +24,9 @@
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
@@ -60,28 +60,28 @@
         <line num="70" count="2" type="stmt"/>
         <line num="71" count="2" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
-        <line num="78" count="2" type="stmt"/>
         <line num="79" count="2" type="stmt"/>
-        <line num="81" count="2" type="stmt"/>
+        <line num="80" count="2" type="stmt"/>
         <line num="82" count="2" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="89" count="3" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
         <line num="90" count="3" type="stmt"/>
         <line num="91" count="3" type="stmt"/>
         <line num="92" count="3" type="stmt"/>
         <line num="93" count="3" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="100" count="2" type="stmt"/>
+        <line num="94" count="3" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
         <line num="101" count="2" type="stmt"/>
         <line num="102" count="2" type="stmt"/>
-        <line num="105" count="2" type="stmt"/>
+        <line num="103" count="2" type="stmt"/>
         <line num="106" count="2" type="stmt"/>
-        <line num="109" count="0" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
-        <line num="117" count="2" type="stmt"/>
+        <line num="107" count="2" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="116" count="2" type="stmt"/>
         <line num="118" count="2" type="stmt"/>
-        <line num="120" count="0" type="stmt"/>
-        <line num="124" count="2" type="stmt"/>
+        <line num="119" count="2" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="125" count="2" type="stmt"/>
       </file>
     </package>
     <package name="code.dbConfig">
@@ -92,28 +92,29 @@
         <line num="2" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
-        <line num="7" count="19" type="stmt"/>
-        <line num="8" count="19" type="stmt"/>
-        <line num="9" count="19" type="stmt"/>
+        <line num="7" count="18" type="stmt"/>
+        <line num="8" count="18" type="stmt"/>
+        <line num="9" count="18" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
       </file>
     </package>
     <package name="code.models">
-      <metrics statements="64" coveredstatements="56" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="19"/>
+      <metrics statements="65" coveredstatements="50" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="16"/>
       <file name="model.js" path="/code/models/model.js">
-        <metrics statements="64" coveredstatements="56" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="19"/>
+        <metrics statements="65" coveredstatements="50" conditionals="2" coveredconditionals="1" methods="19" coveredmethods="16"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
-        <line num="6" count="23" type="stmt"/>
-        <line num="7" count="23" type="stmt"/>
-        <line num="8" count="23" type="stmt"/>
-        <line num="9" count="23" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="19" count="3" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
+        <line num="6" count="20" type="stmt"/>
+        <line num="7" count="20" type="stmt"/>
+        <line num="8" count="20" type="stmt"/>
+        <line num="9" count="20" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="29" count="10" type="stmt"/>
         <line num="31" count="10" type="stmt"/>
@@ -132,40 +133,40 @@
         <line num="50" count="1" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
         <line num="63" count="1" type="stmt"/>
-        <line num="65" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
         <line num="66" count="1" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="74" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
         <line num="75" count="1" type="stmt"/>
         <line num="76" count="1" type="stmt"/>
         <line num="77" count="1" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="86" count="2" type="stmt"/>
-        <line num="87" count="2" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
         <line num="89" count="2" type="stmt"/>
-        <line num="90" count="2" type="stmt"/>
         <line num="91" count="2" type="stmt"/>
         <line num="92" count="2" type="stmt"/>
         <line num="93" count="2" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="101" count="1" type="stmt"/>
-        <line num="102" count="1" type="stmt"/>
+        <line num="94" count="2" type="stmt"/>
+        <line num="95" count="2" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
         <line num="103" count="1" type="stmt"/>
+        <line num="104" count="1" type="stmt"/>
         <line num="105" count="1" type="stmt"/>
-        <line num="106" count="1" type="stmt"/>
         <line num="107" count="1" type="stmt"/>
-        <line num="109" count="0" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
-        <line num="116" count="2" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
         <line num="117" count="2" type="stmt"/>
         <line num="118" count="2" type="stmt"/>
+        <line num="119" count="2" type="stmt"/>
         <line num="120" count="2" type="stmt"/>
-        <line num="122" count="0" type="stmt"/>
-        <line num="129" count="2" type="stmt"/>
+        <line num="122" count="2" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="131" count="2" type="stmt"/>
       </file>
     </package>
     <package name="code.routes">

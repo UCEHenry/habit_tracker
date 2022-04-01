@@ -19,12 +19,12 @@ services:
     ports: 
       - 3000:3000
     environment: 
-      - DB_NAME=hihoClusterAndAway
-      - DB_CONNECTION=mongodb+srv://hihoclusterandaway.vky4q.mongodb.net/hihoclusterandaway
+      - DB_NAME=habits
+      - DB_CONNECTION=mongodb://hiho:habitspass@db:27017
     depends_on:
       - db
      env_file:
-      - .env
+      - .env.example
     command: bash -c "npm install && npm run start"
   db:
     container_name: dev_db

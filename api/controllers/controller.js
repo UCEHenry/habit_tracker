@@ -24,7 +24,7 @@ async function createNewUser(req, res) {
     }
 }
 
-async function authALogin(req, res){
+async function authLogin(req, res){
     try {
         const user = await User.findByUsername(req.body.username)
         if (!user) { 
@@ -73,6 +73,7 @@ async function updateUser(req, res) {
         res.status(422).json({err})
     }
 }
+
 // TODO Testing and controllers
 async function removeUser(req, res) {
     try{

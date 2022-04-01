@@ -1,6 +1,9 @@
 const hform = document.querySelector('.createHabitForm')
 hform.addEventListener('submit', createHabit);
 
+// const API_URL = "https://fphabitapp.herokuapp.com/users"
+const API_URL = "http://localhost:3000/users"
+
 window.onload = async (event) => {
     localStorage.removeItem('habitData')
     let data = await getAllUserHabits()
@@ -86,7 +89,7 @@ async function getAllUserHabits() {
             })
         }
         const username = localStorage.getItem('username');
-        const response = await fetch(`http://localhost:3000/users/${username}`, options);
+        const response = await fetch(`${API_URL}/${username}`, options);
         const data = await response.json();
         let listOfHabits = data.habit;
         if (data.err) {
@@ -128,7 +131,7 @@ async function createHabit(e) {
                 "Content-Type": "application/json"
             }
         }
-        const response = await fetch('http://localhost:3000/users/createhabit', options);
+        const response = await fetch(`${API_URL}/createhabit`, options);
         let data = await response.json();
 
         let localHabitData = JSON.parse(localStorage.getItem('habitData'))
@@ -155,7 +158,7 @@ async function deleteHabit(habitName) {
         const options = {
             method: 'DELETE'
         }
-        await fetch(`http://localhost:3000/users/${username}/${habitName}`, options);
+        await fetch(`${API_URL}/${username}/${habitName}`, options);
 
         let localHabitData = JSON.parse(localStorage.getItem('habitData'))
         localHabitData = localHabitData.filter(habit => habit.habitName !== habitName)
@@ -250,7 +253,7 @@ async function completionHabit(habit) {
             body: JSON.stringify(data),
         }
 
-        const response = await fetch(`http://localhost:3000/users/updatehabit`, options)
+        const response = await fetch(`${API_URL}/updatehabit`, options)
         // const respData = await response.json()
         let localHabitData = JSON.parse(localStorage.getItem('habitData'))
         localHabitData = localHabitData.filter(habitd => habitd.habitName !== habit.habitName)

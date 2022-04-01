@@ -10,7 +10,7 @@ router.post('/login', userController.authLogin)
 router.delete('/:username', userController.removeUser)
 router.post('/createhabit', userController.createHabit)
 router.delete('/:username/:habitname', userController.removeHabit)
-router.patch('/:username', userController.updateHabit)
+router.post('/updatehabit', userController.updateHabit)
 
 
 

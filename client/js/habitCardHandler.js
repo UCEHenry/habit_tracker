@@ -43,7 +43,7 @@ function completedButtonEventHandler(data) {
     const completionButtons = document.querySelectorAll('[id^="completionButton_"]')
     for (i = 0; i < completionButtons.length; i++) {
         completionButtons[i].addEventListener('click', (e) => {
-            habitData = data[e.target.value - 1]
+            let habitData = data.filter(habit=> habit.id == e.target.value)[0]
             completionHabit(habitData)
         })
     }
@@ -53,9 +53,8 @@ function deleteButtonEventHandler(data) {
     const deleteButtons = document.querySelectorAll('[id^="deleteHabit"]')
     for (i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener('click', (e) => {
-            habitData = data[e.target.value - 1]["habitName"]
-            console.log(habitData)
-            deleteHabit(habitData)
+            let habitName = data.filter(habit=> habit.id == e.target.value)[0]['habitName']
+            deleteHabit(habitName)
         })
     }
 }
@@ -164,66 +163,76 @@ function getLastThirtyDays() {
     return last30DaysList
 }
 
-function streakCheck(habitDate) {
-    try {
-        let last30Days = getLastThirtyDays()
-        for (date of last30Days) {
-            for (d of habitDate) {
-                if (d === date['date']) {
-                    date['status'] = 1
-                }
-            }
-        }
-        let currentStreak = 0;
-        let longestStreak = 0;
-        for (day of last30Days) {
-            if (day['status'] === 1) {
-
-                currentStreak++
-            } else {
-
-                if (currentStreak > longestStreak) {
-                    longestStreak = currentStreak
-                }
-                currentStreak = 0
-            }
-        }
-
-        return [currentStreak, longestStreak]
-    } catch (err) {
-        let currentStreak = 0;
-        let longestStreak = 0;
-        return [currentStreak, longestStreak]
-    }
+function streakCheck(userDates) {
+	let currentStreak = 0;
+	let longestStreak = 0;
+	for(array of userDates) {
+		currentStreak = array.length;
+		if(currentStreak > longestStreak){
+			longestStreak = currentStreak
+		}
+	}
+	return [currentStreak, longestStreak]
 }
 
-function completionHabit(habit) {
-    console.log('teset')
-    try {
-        const todaysDate = new Date().toLocaleDateString('en-gb', { day: "numeric", month: "numeric", year: "numeric" })
+function dateStreaksMaker(userDates) {
 
-        if (habit['dates'][habit['dates'].length - 1] != todaysDate) {
-            habit['dates'].push(todaysDate)
-
-            streakData = streakCheck(habit['dates'])
-            habit['currentStreak'] = streakData[0]
-            habit['longestStreak'] = streakData[1]
+    const todaysDate = new Date()
+	const todaysDateFormatted = todaysDate.toLocaleDateString(
+		'en-gb', {
+		day: "numeric",
+		month: "numeric",
+		year: "numeric"
+	}
+	)
+    if(userDates == '') {
+        userDates.push([todaysDateFormatted])
+    } else {
+        const previousDate = new Date(new Date(todaysDate).setDate(new Date(todaysDate).getDate() - 1)).toLocaleDateString(
+		'en-gb', {
+		day: "numeric",
+		month: "numeric",
+		year: "numeric"
+	}
+	)
+        for (dates of userDates) {
+            if (dates[dates.length-1] != previousDate) {
+                userDates.push([todaysDateFormatted])
+				break
+            } else {
+                dates.push(todaysDateFormatted)
+				break
+            }
         }
+    }
+    return userDates
+}
+
+async function completionHabit(habit) {
+    try {
+        newHabitDates = dateStreaksMaker(habit['dates'])
+        newHabitStreaks = streakCheck(newHabitDates)
+        habit['dates'] = newHabitDates
+        habit['currentStreak'] = newHabitStreaks[0]
+        habit['longestStreak'] = newHabitStreaks[1]
         console.log(habit)
         const data = {
-            username: '',
-            habit: habitData
+            username: username,
+            habit: habit
         }
 
         const options = {
-            method: "PATCH",
+            method: "POST",
             headers: new Headers({
-                'Authorization': localStorage.getItem('token')
+                'Authorization': localStorage.getItem('token'),
+                "Content-Type": "application/json"
             }),
             body: JSON.stringify(data),
         }
 
-        // const response = await fetch(`http://localhost:3000/users/${username}`, options)
+        // const response = await fetch(`http://localhost:3000/users/updatehabit`, options)
+        // const respData = await response.json()
+ 
     } catch (err) {
         console.log(err)
     }

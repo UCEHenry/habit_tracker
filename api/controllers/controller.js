@@ -99,10 +99,10 @@ async function createHabit(req, res) {
 async function updateHabit(req, res) {
     try{
         const username = req.body.username
-        const habitname = req.body.habitName
-        console.log('in controller in updateHabit', username, habitname)
-        await User.updateAHabit(username, habitname)
-        res.status(204).json('updated habit')
+        const habit = req.body.habit
+        console.log('in controller in updateHabit', username, habit)
+        const user = await User.updateAHabit(username, habit)
+        res.status(204).json(user)
     } catch (err) {
         res.status(422).json({err})
     }

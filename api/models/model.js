@@ -88,10 +88,10 @@ class User {
         });
     }
 
-    static updateAHabit(username, habitName) {
+    static updateAHabit(username, habit) {
         return new Promise(async (resolve, reject) => {
             try{
-                console.log('in update habit', username, habitName)
+                console.log('in update habit', username, habit)
                 let status = true;
                 const db = await init();
                 await db.collection('users').updateOne({username: username, habit:{$elemMatch: {habitName: habitName}}}, {$set:{'habit.$.completed': status}})

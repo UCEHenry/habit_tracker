@@ -24,6 +24,6 @@ DO NOT run both the dev enviroment and test enviroment at the same time.
 
 ==================== To Do ============================
 
-[] add a heatmap to the client side.
-[] fix the frontend testing.
-[] add testing for errors in controllers & models.
+- [] add a heatmap to the client side.
+- [] fix the frontend testing.
+- [] add testing for errors in controllers & models.

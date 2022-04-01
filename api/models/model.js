@@ -43,9 +43,15 @@ class User {
         return new Promise(async (resolve, reject) => {
             try {
                 const db = await init();
-                let userData = await db.collection('users').insertOne({ username: username, password: password })
-                let newUser = new User(userData.ops[0]);
-                resolve(newUser);
+                let existingUser = await db.collection('users').findOne({username: username})
+                if(existingUser === null){
+                    let userData = await db.collection('users').insertOne({ username: username, password: password });
+                    let newUser = new User(userData.ops[0]);
+                    resolve(newUser);
+                }
+                else{
+                    resolve(`${username} already exists`);
+                }
             } catch (err) {
                 reject(`Error creating user: ${username}`);
             }

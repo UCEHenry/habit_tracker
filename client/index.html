@@ -1,12 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="icon" type="image/x-icon" href="./css/images/favicon.ico">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- JWT Token to decrypt -->
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@1.5.1/build/jwt-decode.min.js"></script>
+
+
+  <!-- JavaScript Bundle with Popper -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
     
+  <script defer src="./js/authHandler.js"></script>
+  <!-- <script defer src="./bundle.js"></script> -->
+
+  <title>Habits</title>
+</head>
+
+<body>
+  <header class="p-3 text-white sticky-top">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 mx-auto justify-content-center mb-md-0">
+          <li class="text-white">Habits</li>
+        </ul>
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal"
+              data-bs-target="#logInModal">Log In</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="banner">
+    <section id="title">
+      <h2>Welcome to Habits</h2>
+      <p>A place where you can track all your personalised habits in one location.</p>
+      <button id="signUpBtn" onClick="document.getElementById('signUpForm').scrollIntoView();" > Sign Up </button>
+
+    </section>
+    <img src="./css/images/home_banner.jpg">
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="logInModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logInModalLabel">Log In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="logInForm">
+            <div class="mb-3">
+              <label for="logInUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="logInUsername" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your details with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="logInPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="logInPassword">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-warning">Log In</button>
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Log in</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <section class="infoBoard">
+    <h2>How it works</h2>
+    <div class="container marketing">
+
+      <div class="row text-center">
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="./css/images/habits.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>1. Add your habits</h2>
+          <p>It's time to start your progress, and create your own list of personalised habit(s) for you to keep track off.</p>
+        </div>
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="./css/images/track.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>2. Track your habits</h2>
+          <p>All habits are tracked and maintained by you. As long as you meet your targets, you can tick them off the list and earn streaks!</p>
+        </div>
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="./css/images/reward.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>3. Rewards</h2>
+          <p>Stand up, and give yourself a pat on the back. View all your accomplishments and progress from the day you started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vh-100" id="signUpForm">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                  <form id="signUpForm" class="mx-1 mx-md-4">
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="registerName" class="form-control" minlength="5" required/>
+                        <label class="form-label" for="registerName">Your Name</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="registerUsername" class="form-control" minlength="5" required />
+                        <label class="form-label" for="registerUsername">Your Username</label>
+                      </div>
+                    </div>
+
+                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="email" id="form3Example3c" class="form-control" />
+                        <label class="form-label" for="form3Example3c">Your Email</label>
+                      </div>
+                    </div> -->
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="registerPassword" class="form-control" minlength="5" required />
+                        <label class="form-label" for="registerPassword">Password</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="registerCheckPassword" class="form-control" minlength="5" required />
+                        <label class="form-label" for="registerCheckPassword">Repeat your password</label>
+                      </div>
+                    </div>
+
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <input class="form-check-input me-2" type="checkbox" value="" id="termsAndService" />
+                      <label class="form-check-label" for="termsAndService">
+                        I agree all statements in <a href="#!">Terms of service</a>
+                      </label>
+                    </div>
+
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <input type="submit" class="btn btn-primary btn-lg" value="Register">
+                    </div>
+
+                  </form>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
+
 </html>

@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon --legacy-watch index.js",
     "seedDev": "node dbConfig/seedDev.js",
-    "test": "jest --setupFiles ./tests/integration/config.js --watchAll --detectOpenHandles --runInBand --verbose",
+    "test": "jest --watchAll --detectOpenHandles --runInBand --verbose  --coverage",
     "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
     "coverage": "jest --testPathPattern=/unit/ --coverage"
   },
@@ -17,14 +17,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^8.2.0",
     "mongodb": "^3.6.3"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^2.2.1",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.15",
     "supertest": "^4.0.2",
-    "jest": "^26.4.2"
+    "jsonwebtoken": "^8.5.1"
   }
 }
-

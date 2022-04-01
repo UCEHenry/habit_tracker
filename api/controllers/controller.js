@@ -73,6 +73,7 @@ async function updateUser(req, res) {
         res.status(422).json({err})
     }
 }
+
 // TODO Testing and controllers
 async function removeUser(req, res) {
     try{

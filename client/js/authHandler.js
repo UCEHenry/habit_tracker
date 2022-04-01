@@ -5,7 +5,8 @@ logInForm.addEventListener('submit', requestLogin)
 signUpForm.addEventListener('submit', registerNewUser)
 passwordValidation()
 
-const API_URL = "https://fphabitapp.herokuapp.com/users"
+// const API_URL = "https://fphabitapp.herokuapp.com/users"
+const API_URL = "http://localhost:3000/users"
 
 
 async function registerNewUser(event) {
@@ -29,7 +30,7 @@ async function registerNewUser(event) {
 
             const response = await fetch(`${API_URL}/createuser`, options);
             const data = await response.json()
-
+            console.log(data)
             if (data.err){ 
                 throw Error(data.err); 
             } else {

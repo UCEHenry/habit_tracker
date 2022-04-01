@@ -5,6 +5,7 @@ const resetTestDB = require('./config.js')
 describe('habit endpoints', () => {
     let api;
     let username = 'carlton'
+    let newUsername = 'bob'
     let habit = {
         habitName: "sleep",
         schedule: 'weekly',
@@ -95,12 +96,12 @@ describe('habit endpoints', () => {
                 .patch('/users/phil')
                 .send({
                     username:'phil',
-                    habitName:'sleep'
+                    habit: {habitName:'sleep', schedule:'weekly',completed:'true', dates:['1/1/2022', '7/1/2022'], currentStreak:4, longestStreak:2}
                 })
-            expect(res.statusCode).toEqual(204);
+            expect(res.statusCode).toEqual(201);
             const userRes = await request(api).get('/users/phil');
             expect(userRes.statusCode).toEqual(200);
-            console.log("in the update test", userRes.body.habit[0].currentStreak);
+            //console.log("in the update test", userRes.body.habit[0]);
     
     
     
@@ -144,7 +145,7 @@ describe('user endpoints', () => {
             })
         expect(res.statusCode).toEqual(201)
         expect(res.body).toHaveProperty("username")
-        console.log(res.body)
+        //console.log(res.body)
         const userRes = await request(api).get('/users/carlton')
         expect(userRes.statusCode).toEqual(200);
     })
@@ -156,16 +157,52 @@ describe('user endpoints', () => {
         expect(res.body.habit[0].habitName).toEqual('sleep')
     })
 
+    it('Should get all users.', async () => {
+        const res = await request(api).get('/users')
+        expect(res.statusCode).toEqual(200)
+    })
+
+
+    it('Should update an existing user', async () => {
+        const res = await request(api)
+            .patch('/users/updateuser/will')
+            .send({
+                oldUsername: 'will',
+                newUsername: 'bob'
+                
+            })
+        expect(res.statusCode).toEqual(200);
+        const userRes = await request(api).get('/users/bob');
+        expect(userRes.statusCode).toEqual(200);
+    })
+
+
+
+
+    // it('should login a user', async () => {
+    //     const res = await request(api)
+    //         .post('/login')
+    //         .send({
+    //             username: username,
+    //             password: password
+    //         })
+    //     expect(res.statusCode).toEqual(200);
+
+
+
+
+    // })
+
    
 
-    // it('Should delete selected user.', async () => {
-    //     const res = await request(api)
-    //         .delete('/users/phil')
-    //     expect(res.statusCode).toEqual(204);
-    //     const userRes = await request(api).get('/users/phil');
-    //     expect(userRes.statusCode).toEqual(404);
-    //     expect(userRes.body).toHaveProperty('err');
-    // })
+    it('Should delete selected user.', async () => {
+        const res = await request(api)
+            .delete('/users/phil')
+        expect(res.statusCode).toEqual(204);
+        const userRes = await request(api).get('/users/phil');
+        expect(userRes.statusCode).toEqual(404);
+        expect(userRes.body).toHaveProperty('err');
+    })
 
 
 
